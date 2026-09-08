@@ -18,12 +18,13 @@
 	<baselayers style="gallery">   
 		<baselayer
 			type="XYZ"
-			id="alidade"
-			label="Alidade Smooth"
-			title="Stadia Maps"
-			url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png"
-			attribution="© Stadia Maps © OpenMapTiles © OpenStreetMap contributors"
+			id="positron"
+			label="Plan clair"
+			title="CartoDB Positron"
+			url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+			attribution="© OpenStreetMap contributors © CARTO"
 			maxzoom="20"
+			visible="true"
 		/>
 	</baselayers>
 	<extensions>
