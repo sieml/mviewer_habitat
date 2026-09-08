@@ -1,0 +1,164 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+
+					<div class="col-xs-3" >
+						<canvas id="ChartLog"></canvas>
+						<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Statuts d'occupation des logements</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{annee}}</i></br></p></br>
+						</div> 
+					</div>
+
+			
+					
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{annee}} - Source : INSEE RP</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>		
+{{/features}}
+
+<style>
+
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+<script>
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+
+
+	var annee=[];
+	{{#features}}
+		annee.push('{{annee}}');
+	{{/features}}	
+
+	var part_proprietaires=[];
+	{{#features}}
+		part_proprietaires.push('{{part_proprietaires}}');
+	{{/features}}	
+
+	var part_loc_prive_vide=[];
+	{{#features}}
+		part_loc_prive_vide.push('{{part_loc_prive_vide}}');
+	{{/features}}	
+
+	var part_loc_meuble=[];
+	{{#features}}
+		part_loc_meuble.push('{{part_loc_meuble}}');
+	{{/features}}
+
+	var part_loc_social_vide=[];
+	{{#features}}
+		part_loc_social_vide.push('{{part_loc_social_vide}}');
+	{{/features}}	
+
+	var part_loge_gratuit=[];
+	{{#features}}
+		part_loge_gratuit.push('{{part_loge_gratuit}}');
+	{{/features}}	
+		
+	var indicateurLog = {};
+	indicateurLog.getData = function() {
+		var data = {ChartLog: {labels:["Propriétaires", "Locatif privé","Locatif meublé","Locatif social","Logé gratuitement" ], data: {datasets: [[part_proprietaires,part_loc_prive_vide,part_loc_meuble,part_loc_social_vide,part_loge_gratuit]]}}};
+		indicateurLog.drawChart(data);
+	};
+
+	
+	indicateurLog.drawChart = function (data) {
+			var ctx1 = document.getElementById("ChartLog");
+			var maxscale = Math.max.apply(this, data.ChartLog.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx1.getContext("2d").canvas.width = 100;
+			ctx1.getContext("2d").canvas.height = 55;
+			var ChartLog = new Chart(ctx1, {
+			type: 'doughnut',
+			data: {
+				labels: data.ChartLog.labels,
+				datasets: [{
+							label: "Part selon le type",
+							backgroundColor: [
+								"#005697",
+								"#327027",
+								"#41D0FB",
+								"#007B97",
+								"#658D9B"
+
+							],
+							borderWidth: 3,
+							borderSkipped:'left',
+							data: data.ChartLog.data.datasets[0]
+							}]
+			},
+			  options: {
+				legend: {
+					position: 'right',
+				},
+				tooltips: {					
+					titleFontFamily:"roboto_bold",
+					titleFontSize:13,
+					bodyFontFamily:"roboto_regular",
+					backgroundColor:"rgba(36, 36, 36, 0.85)",
+					callbacks: {
+						label: function(tooltipItem, data) {
+							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(2).toLocaleString() + "%";
+
+						}
+					}
+		        }
+			}
+		});  
+	};
+	
+
+	
+	
+	 if  (typeof Chart === 'function') {
+            indicateurLog.getData();
+			
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js', function() {
+				indicateurLog.getData();
+            });
+	}
+
+
+</script>

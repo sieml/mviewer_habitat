@@ -1,0 +1,9 @@
+{
+  "js": ["main.js"],
+  "css": "style.css",
+  "html": "habitat_commentaire.html",
+  "target": "map",
+  "options": {
+    "title": "habitat_commentaire"
+  }
+}

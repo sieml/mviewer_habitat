@@ -1,0 +1,247 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+					<div class="col-xs-2" style="padding-right:0px; margin-top:3%;">
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/valise.png" style="width:60px; margin-top:50%; ">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{nb_empl_lt}}
+								</div>
+								<div class="title-number" style="text-align: left;">
+									<p>Nombre d'emplois</p>
+								</div>	
+        						<div class="title-number">
+        							<p>{{nb_empl_lt_comp}} emplois pour l'EPCI</p>
+        						</div>								
+								
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/part.png" style="width:60px; margin-top:50%;">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{tx_emploi_comp}}%
+								</div>
+								<div class="title-number" style="text-align: left;">
+									<p>Part des emplois de {{nom_officiel_comp}}</br></p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-2" >
+						<canvas id="ChartTxEmplSal"></canvas>
+						<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Taux d'emploi salarié dans les emplois au lieu de travail</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{serie}}</i></br></p></br>
+						</div> 
+					</div>
+					<div class="col-xs-2" >
+						<canvas id="ChartTxEmplSal2"></canvas>
+						<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Taux d'emploi salarié dans les emplois au lieu de travail</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel_comp}}, {{serie}}</i></br></p></br>
+						</div> 
+					</div>
+					
+					
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{serie}} - Source : INSEE RP</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>		
+{{/features}}
+
+<style>
+
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+<script>
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}	
+
+	var serie=[];
+	{{#features}}
+		serie.push('{{serie}}');
+	{{/features}}	
+
+	var tx_empl_ns=[];
+	{{#features}}
+		tx_empl_ns.push('{{tx_empl_ns}}');
+	{{/features}}	
+
+	var tx_empl_s=[];
+	{{#features}}
+		tx_empl_s.push('{{tx_empl_s}}');
+	{{/features}}	
+
+	var tx_empl_ns_comp=[];
+	{{#features}}
+		tx_empl_ns_comp.push('{{tx_empl_ns_comp}}');
+	{{/features}}
+
+	var tx_empl_s_comp=[];
+	{{#features}}
+		tx_empl_s_comp.push('{{tx_empl_s_comp}}');
+	{{/features}}	
+	
+	var indicateurTxEmplSal_a = {};
+	indicateurTxEmplSal_a.getData = function() {
+		var data = {ChartTxEmplSal: {labels:["Emplois salariés", "Emplois non salariés" ], data: {datasets: [[tx_empl_s,tx_empl_ns]]}}};
+		indicateurTxEmplSal_a.drawChart(data);
+	};
+	var indicateurTxEmplSal_b = {};
+	indicateurTxEmplSal_b.getData = function() {
+		var data = {ChartTxEmplSal2: {labels:["Emplois salariés", "Emplois non salariés" ], data: {datasets: [[tx_empl_s_comp,tx_empl_ns_comp]]}}};
+		indicateurTxEmplSal_b.drawChart(data);
+	};	
+	
+	indicateurTxEmplSal_a.drawChart = function (data) {
+			var ctx1 = document.getElementById("ChartTxEmplSal");
+			var maxscale = Math.max.apply(this, data.ChartTxEmplSal.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx1.getContext("2d").canvas.width = 100;
+			ctx1.getContext("2d").canvas.height = 55;
+			var ChartTxEmplSal = new Chart(ctx1, {
+			type: 'doughnut',
+			data: {
+				labels: data.ChartTxEmplSal.labels,
+				datasets: [{
+							label: "Part selon le type",
+							backgroundColor: [
+								"#005EA8",
+								"#61B850"
+							],
+							borderWidth: 3,
+							borderSkipped:'left',
+							data: data.ChartTxEmplSal.data.datasets[0]
+							}]
+			},
+			  options: {
+				legend: {
+					position: 'right',
+				},
+				tooltips: {					
+					titleFontFamily:"roboto_bold",
+					titleFontSize:13,
+					bodyFontFamily:"roboto_regular",
+					backgroundColor:"rgba(36, 36, 36, 0.85)",
+					callbacks: {
+						label: function(tooltipItem, data) {
+							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(2).toLocaleString() + "%";
+
+						}
+					}
+		        }
+			}
+		});  
+	};
+	
+	indicateurTxEmplSal_b.drawChart = function (data) {
+			console.log(data)
+			var ctx1 = document.getElementById("ChartTxEmplSal2");
+			var maxscale = Math.max.apply(this, data.ChartTxEmplSal2.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			console.log(data.ChartTxEmplSal2.data.datasets[0])
+			ctx1.getContext("2d").canvas.width = 100;
+			ctx1.getContext("2d").canvas.height = 55;
+			var ChartTxEmplSal2 = new Chart(ctx1, {
+			type: 'doughnut',
+			data: {
+				labels: data.ChartTxEmplSal2.labels,
+				datasets: [{
+							label: "Part selon le type",
+							backgroundColor: [
+								"#005EA8",
+								"#61B850"
+							],
+							borderWidth: 3,
+							borderSkipped:'left',
+							data: data.ChartTxEmplSal2.data.datasets[0]
+							}]
+			},
+			  options: {
+				legend: {
+					position: 'right',
+				},
+				tooltips: {					
+					titleFontFamily:"roboto_bold",
+					titleFontSize:13,
+					bodyFontFamily:"roboto_regular",
+					backgroundColor:"rgba(36, 36, 36, 0.85)",
+					callbacks: {
+						label: function(tooltipItem, data) {
+							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(2).toLocaleString() + "%";
+
+						}
+					}
+		        }
+			}
+		});  
+	};	
+	
+	
+	
+	
+	
+	 if  (typeof Chart === 'function') {
+            indicateurTxEmplSal_a.getData();
+            indicateurTxEmplSal_b.getData();
+			
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js', function() {
+				indicateurTxEmplSal_a.getData();
+                indicateurTxEmplSal_b.getData();
+            });
+	}
+
+
+</script>

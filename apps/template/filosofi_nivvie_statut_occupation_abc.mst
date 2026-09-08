@@ -1,0 +1,297 @@
+{{#features}}
+<div id="CarouselFilosofi" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{lib_geo}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class="item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+
+				<!-- Niveau de vie médian -->
+				<div class="row" style="margin-bottom:10px;">
+
+					<div class="col-xs-2" style="padding-right:0px; margin-top:3%;">
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/revenu.png" style="width:60px; margin-top:50%; ">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{nv_median_total}}
+								</div>
+								<div class="title-number" style="text-align: left;">
+									<p>Revenu annuel médian annuel (€)</p>
+								</div>					
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/part.png" style="width:60px; margin-top:50%;">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{taux_pauvrete_total}}%
+								</div>
+								<div class="title-number" style="text-align: left;">
+									<p>Taux de pauvreté</br></p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-xs-3" style="margin-left:3%;">
+						<canvas id="ChartNiveauVie"></canvas>
+						<div style="margin-top:10px; text-align:center;">
+							<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>Revenus annuels médians par statut d'occupation</i></p>
+						</div>
+					</div>
+
+					<div class="col-xs-3" style="margin-left:3%;">
+						<canvas id="ChartTauxPauvrete"></canvas>
+						<div style="margin-top:10px; text-align:center;">
+							<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>Taux de pauvreté par statut d'occupation</i></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+						<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{lib_geo}} - 2021 - Source : INSEE FILOSOFI</i></p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{{/features}}
+
+<style>
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;
+	}
+	.number {
+		font-family: "roboto_black";
+		font-size:35px;
+	}
+	.title-number {
+		font-family: "roboto_bold";
+		font-size:12px;
+	}
+
+	.no-data-msg {
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    height: 80px;
+	    background: repeating-linear-gradient(
+	        45deg,
+	        #f5f5f5,
+	        #f5f5f5 6px,
+	        #ebebeb 6px,
+	        #ebebeb 12px
+	    );
+	    border: 1px dashed #aaa;
+	    border-radius: 4px;
+	    font-family: 'roboto_bold', sans-serif;
+	    font-size: 12px;
+	    color: #777;
+	    text-align: center;
+	    padding: 8px;
+	}	
+</style>
+
+<script>
+
+	var nv_median_proprietaires = [];
+	var nv_median_locataires    = [];
+	var nv_median_total         = [];
+	var taux_pauvrete_proprietaires = [];
+	var taux_pauvrete_locataires    = [];
+	var taux_pauvrete_total         = [];
+	var lib_geo = [];
+
+	{{#features}}
+		nv_median_proprietaires.push('{{nv_median_proprietaires}}');
+		nv_median_locataires.push('{{nv_median_locataires}}');
+		nv_median_total.push('{{nv_median_total}}');
+		taux_pauvrete_proprietaires.push('{{taux_pauvrete_proprietaires}}');
+		taux_pauvrete_locataires.push('{{taux_pauvrete_locataires}}');
+		taux_pauvrete_total.push('{{taux_pauvrete_total}}');
+		lib_geo.push('{{lib_geo}}');
+	{{/features}}
+
+	var filosofiCharts = {};
+
+	filosofiCharts.getData = function() {
+		filosofiCharts.drawChartNiveauVie();
+		filosofiCharts.drawChartTauxPauvrete();
+	};
+
+filosofiCharts.drawChartNiveauVie = function() {
+    var ctx = document.getElementById("ChartNiveauVie");
+    ctx.getContext("2d").canvas.width  = 100;
+    ctx.getContext("2d").canvas.height = 55;
+
+    var rawValues = [
+        nv_median_proprietaires[0],
+        nv_median_locataires[0],
+        nv_median_total[0]
+    ];
+
+    // Valeur manquante = vide, "nd", "NS", ou NaN
+    var isEmpty = function(v) {
+        return v === '' || v === undefined || v === null || v === 'nd' || v === 'NS' || isNaN(parseFloat(v));
+    };
+
+    var values = rawValues.map(function(v) {
+        return isEmpty(v) ? null : parseFloat(v);
+    });
+
+    var colors = values.map(function(v) {
+        return v === null ? "#cccccc" : "#005EA8";
+    });
+
+    var allMissing = values.every(function(v) { return v === null; });
+
+    // Si toutes les données sont manquantes, afficher un message
+    if (allMissing) {
+        var wrapper = ctx.parentElement;
+        ctx.style.display = 'none';
+        if (!wrapper.querySelector('.no-data-msg')) {
+            var msg = document.createElement('div');
+            msg.className = 'no-data-msg';
+            msg.innerHTML = '🔒 Données confidentielles';
+            wrapper.insertBefore(msg, ctx);
+        }
+        return;
+    }
+
+    var validValues = values.filter(function(v) { return v !== null; });
+    var maxscale = Math.max.apply(null, validValues) * 1.2;
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Propriétaires', 'Locataires', 'Total'],
+            datasets: [{
+                label: 'Niveau de vie médian (€)',
+                backgroundColor: colors,
+                borderColor: colors,
+                borderWidth: 1,
+                borderSkipped: 'left',
+                data: values
+            }]
+        },
+        options: {
+            legend: { display: false },
+            scales: {
+                yAxes: [{ ticks: { beginAtZero: false, max: maxscale } }]
+            },
+            tooltips: {
+                titleFontFamily: "roboto_bold",
+                titleFontSize: 13,
+                bodyFontFamily: "roboto_regular",
+                backgroundColor: "rgba(36, 36, 36, 0.85)",
+                callbacks: {
+                    label: function(tooltipItem) {
+                        if (tooltipItem.value === null) return 'Donnée confidentielle';
+                        return parseFloat(tooltipItem.value).toFixed(0) + " €";
+                    }
+                }
+            }
+        }
+    });
+};
+
+filosofiCharts.drawChartTauxPauvrete = function() {
+    var ctx = document.getElementById("ChartTauxPauvrete");
+    ctx.getContext("2d").canvas.width  = 100;
+    ctx.getContext("2d").canvas.height = 55;
+
+    var rawValues = [
+        taux_pauvrete_proprietaires[0],
+        taux_pauvrete_locataires[0],
+        taux_pauvrete_total[0]
+    ];
+
+    var isEmpty = function(v) {
+        return v === '' || v === undefined || v === null || v === 'nd' || v === 'NS' || isNaN(parseFloat(v));
+    };
+
+    var values = rawValues.map(function(v) {
+        return isEmpty(v) ? null : parseFloat(v);
+    });
+
+    var colors = values.map(function(v) {
+        return v === null ? "#cccccc" : "#005EA8";
+    });
+
+    var allMissing = values.every(function(v) { return v === null; });
+
+    if (allMissing) {
+        var wrapper = ctx.parentElement;
+        ctx.style.display = 'none';
+        if (!wrapper.querySelector('.no-data-msg')) {
+            var msg = document.createElement('div');
+            msg.className = 'no-data-msg';
+            msg.innerHTML = '🔒 Données confidentielles';
+            wrapper.insertBefore(msg, ctx);
+        }
+        return;
+    }
+
+    var validValues = values.filter(function(v) { return v !== null; });
+    var maxscale = Math.max.apply(null, validValues) * 1.2;
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Propriétaires', 'Locataires', 'Total'],
+            datasets: [{
+                label: 'Taux de pauvreté (%)',
+                backgroundColor: colors,
+                borderColor: colors,
+                borderWidth: 1,
+                borderSkipped: 'left',
+                data: values
+            }]
+        },
+        options: {
+            legend: { display: false },
+            scales: {
+                yAxes: [{ ticks: { beginAtZero: true, max: maxscale } }]
+            },
+            tooltips: {
+                titleFontFamily: "roboto_bold",
+                titleFontSize: 13,
+                bodyFontFamily: "roboto_regular",
+                backgroundColor: "rgba(36, 36, 36, 0.85)",
+                callbacks: {
+                    label: function(tooltipItem) {
+                        if (tooltipItem.value === null) return 'Donnée confidentielle';
+                        return parseFloat(tooltipItem.value).toFixed(1) + " %";
+                    }
+                }
+            }
+        }
+    });
+};
+
+	if (typeof Chart === 'function') {
+		filosofiCharts.getData();
+	} else {
+		$.get('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js', function() {
+			filosofiCharts.getData();
+		});
+	}
+
+</script>

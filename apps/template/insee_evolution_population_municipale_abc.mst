@@ -1,0 +1,270 @@
+
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+					<div class="col-xs-2">
+						<img class="img-responsive" src="./apps/template/img/population.png" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{tx_evol_pop}}%</div>
+						<div class="title-number style="color: #354753;text-align:center;"">
+							<p>Taux d'évolution annuel moyen de la population sur la période</p>
+						</div>
+						<div class="title-number" style="text-align:center;">
+							<p>{{tx_evol_pop_comp}}% pour {{nom_officiel_comp}}</p>
+						</div>						
+					</div>
+					<!-- CHIFFRES CLES SOLDE -->
+    				<div class="col-xs-4" >
+    					<canvas id="ChartTxEvolPop"></canvas>
+    					<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Solde naturel et solde migratoire</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; "><i>{{nom_officiel}}, {{serie}}</i></br></p></br>
+    					</div> 
+    				</div>
+
+    				<!--
+					<div class="col-xs-2" >
+                        <div class="definition">
+    					<div style="font-family:'roboto_bold';color: #2F4455;"> 
+    						<img src="apps/template/img/definition.svg" style="width:18px; margin-right:2px; margin-top:-1%;">Solde naturel <i></i>
+    					</div>
+    					<p style="margin-top:1%;">Le solde naturel est la différence entre le nombre de naissances et le nombre de décès enregistrés au cours d'une période.  
+    					</p>
+    					<div style="font-family:'roboto_bold';color: #2F4455; margin-top:10%;"> 
+    						<img src="apps/template/img/definition.svg" style="width:18px; margin-right:2px; margin-top:-1%;">Solde migratoire<i></i>
+    					</div>
+    					<p style="margin-top:1%;">Le solde migratoire (ou apparent) est la différence entre le nombre de personnes qui sont entrées sur le territoire et le nombre de personnes qui en sont sorties au cours de l'année.  
+    					</p>					
+    				</div>	
+    				-->	
+    				<div class="col-xs-4" >
+    					<canvas id="ChartEvolPop"></canvas>
+    					<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Evolution de la population municipale</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; "><i>{{nom_officiel}}</i></br></p></br>
+    					</div> 
+    				</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>		
+{{/features}}
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+<script>
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}
+
+	var serie=[];
+	{{#features}}
+		serie.push('{{serie}}');
+	{{/features}}	
+	
+	var tx_evol_pop=[];
+	{{#features}}
+		tx_evol_pop.push('{{tx_evol_pop}}');
+	{{/features}}	
+	
+	var tx_evol_naturel=[];
+	{{#features}}
+		tx_evol_naturel.push('{{tx_evol_naturel}}');
+	{{/features}}	
+	
+	var tx_evol_apparent=[];
+	{{#features}}
+		tx_evol_apparent.push('{{tx_evol_apparent}}');
+	{{/features}}	
+
+	var tx_evol_pop_comp=[];
+	{{#features}}
+		tx_evol_pop_comp.push('{{tx_evol_pop_comp}}');
+	{{/features}}	
+	
+	var tx_evol_naturel_comp=[];
+	{{#features}}
+		tx_evol_naturel_comp.push('{{tx_evol_naturel_comp}}');
+	{{/features}}	
+	
+	var tx_evol_apparent_comp=[];
+	{{#features}}
+		tx_evol_apparent_comp.push('{{tx_evol_apparent_comp}}');
+	{{/features}}	
+
+	{{#features}}
+
+		const chart_evolpop = JSON.parse('{{{chart_evolpop}}}')
+
+	{{/features}}	
+	
+	
+	var indicateurTxEvolPop = {};
+	indicateurTxEvolPop.getData = function() {
+		var data = {ChartTxEvolPop: {labels:["Solde naturel","Solde migratoire"], data: {datasets: [[tx_evol_naturel[0],tx_evol_apparent[0]],[tx_evol_naturel_comp[0],tx_evol_apparent_comp[0]]]}}};
+		indicateurTxEvolPop.drawChart(data);
+		console.log(data)
+	};
+	
+ 	indicateurTxEvolPop.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartTxEvolPop");
+			var maxscale = Math.max.apply(this, data.ChartTxEvolPop.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartTxEvolPop = new Chart(ctx2, {
+			type: 'bar',
+			data: {
+				labels: data.ChartTxEvolPop.labels,
+				datasets: [
+				    {
+						label: nom_officiel,
+						backgroundColor: "#005EA8",
+						borderColor: "#005EA8",
+						borderWidth: 1,
+						data: data.ChartTxEvolPop.data.datasets[0],
+						stack:'Stack 0'
+			    	},
+				    {
+						label: nom_officiel_comp,
+						backgroundColor: "#64BE53",
+						borderColor: "#64BE53",
+						borderWidth: 1,
+						data: data.ChartTxEvolPop.data.datasets[1],
+						stack:'Stack 1'
+			    	},
+				]
+			},
+			 options: {
+	           plugins: {
+	                tooltip: {
+	                    callbacks: {
+	                        afterLabel: function (context) {
+	                            const label = context.label;
+	                            if (label === "Solde naturel") {
+	                                return "Le solde naturel est la différence entre le nombre de naissances\n et le nombre de décès enregistrés au cours\n d'une période.";
+	                            } else if (label === "Solde migratoire") {
+	                                return "Le solde migratoire (ou apparent) est la différence entre\n le nombre de personnes qui sont entrées sur le territoire\n et le nombre de personnes qui en sont sorties au cours de l'année.";
+	                            }
+	                            return '';
+	                        }
+	                    }
+	                }
+	            }
+
+			}
+		});  
+	};
+	var indicateurEvolPop = {};
+ 	indicateurEvolPop.drawChart = function (data) {
+			var ctx3 = document.getElementById("ChartEvolPop");
+			var ChartTxEvolPop = new Chart(ctx3, {
+			   type: 'line', // ou 'bar' si tu préfères un histogramme
+			    data: chart_evolpop,
+			    options: {
+			      responsive: true,
+			      plugins: {
+			        title: {
+			          display: true,
+			          text: ''
+			        }
+			      },
+			      scales: {
+			        y: {
+			          title: {
+			            display: true,
+			            text: 'Population'
+			          },
+			          beginAtZero: false
+			        },
+			        x: {
+			          title: {
+			            display: true,
+			            text: 'Année'
+			          }
+			        }
+			      }
+			    }
+			  });
+	};
+
+
+
+
+	if  (typeof Chart === 'function') {
+		indicateurTxEvolPop.getData();
+		indicateurEvolPop.drawChart();
+
+    } else {
+        $.get('https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js', function() {
+			indicateurTxEvolPop.getData();
+			indicateurEvolPop.drawChart();
+        });
+	}	
+	
+</script>

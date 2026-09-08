@@ -1,0 +1,254 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">
+				
+					<div class="col-xs-2" style="padding-right:0px; ">
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/population.png" style="width:60px; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left;font-size:24px;">
+									{{popmunicipale}}
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>Population municipale</p>
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>{{popmunicipale_comp}} pour {{nom_officiel_comp}}</p>
+								</div>									
+							</div>	
+						</div>
+                  <div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/part.png" style="width:60px; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left;font-size:24px;">
+									{{tx_popmunicipale_comp}}%
+								</div>
+								<div class="title-number" style="text-align:left;">
+									<p>Part de la population de {{nom_officiel_comp}}</p>
+								</div>	
+							</div>
+						</div>
+					</div>				
+				
+				
+					<div class="col-xs-2" >
+						<img class="img-responsive" src="./apps/template/img/density.png" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{dens_pop}}</div>
+						<div class="title-number" style="text-align:center;">
+							<p>Densité de population (hab/km²)</p>
+						</div>
+					</div>
+					
+    				<div class="col-xs-4" >
+    					<canvas id="ChartPopAge"></canvas>
+    					<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Répartition de la population selon la catégorie d'âge (%)</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{serie}}</i></br></p></br>
+    					</div> 
+    				</div>
+
+					<div class="col-xs-2" >
+						<img class="img-responsive" src="./apps/template/img/couple.png" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{ind_vieillissement}}</div>
+						<div class="title-number" style="text-align:center;">
+							<p>Indice de vieillissement<p>
+						</div>
+						<div class="definition" style="text-align:center;font-size:10px">
+							<p>L'indice de vieillissement est le rapport de la population des 65 ans et plus sur celle des moins de 20 ans.<p>
+						</div>						
+					</div>
+
+    				
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{serie}} - Source : INSEE RP</i></p>
+						</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+{{/features}}
+
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+
+	
+	var tx_25m=[];
+	{{#features}}
+		tx_25m.push('{{tx_25m}}');
+	{{/features}}	
+	
+	var tx_25_64=[];
+	{{#features}}
+		tx_25_64.push('{{tx_25_64}}');
+	{{/features}}	
+	
+	var tx_65p=[];
+	{{#features}}
+		tx_65p.push('{{tx_65p}}');
+	{{/features}}	
+
+	var tx_25m_comp=[];
+	{{#features}}
+		tx_25m_comp.push('{{tx_25m_comp}}');
+	{{/features}}	
+	
+	var tx_25_64_comp=[];
+	{{#features}}
+		tx_25_64_comp.push('{{tx_25_64_comp}}');
+	{{/features}}	
+	
+	var tx_65p_comp=[];
+	{{#features}}
+		tx_65p_comp.push('{{tx_65p_comp}}');
+	{{/features}}	
+	
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}	
+
+	
+	var indicateurPopAge_b = {};
+	indicateurPopAge_b.getData = function() {
+		var data = {ChartPopAge: {labels:[nom_officiel,nom_officiel_comp], data: {datasets: [[tx_25m[0],tx_25m_comp[0]],[tx_25_64[0],tx_25_64_comp[0]],[tx_65p[0],tx_65p_comp[0]]], skipNull: true }}};
+		indicateurPopAge_b.drawChart(data);
+	};
+    
+	indicateurPopAge_b.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartPopAge");
+			var maxscale = Math.max.apply(this, data.ChartPopAge.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartPopAge = new Chart(ctx2, {
+			type: 'bar',
+			data: {
+				labels: data.ChartPopAge.labels,
+				datasets: [
+				    {
+						label: 'Moins de 25 ans',
+						backgroundColor: "#005EA8",
+						borderColor: "#005EA8",
+						borderWidth: 1,
+						data: data.ChartPopAge.data.datasets[0]
+			    	},
+				    {
+						label: '25-64 ans',
+						backgroundColor: "#64BE53",
+						borderColor: "#64BE53",
+						borderWidth: 1,
+						data: data.ChartPopAge.data.datasets[1]
+			    	},
+				    {
+						label: '65 ans et plus',
+						backgroundColor: "#B1DBF2",
+						borderColor: "#B1DBF2",
+						borderWidth: 1,
+						data: data.ChartPopAge.data.datasets[2]
+			    	}
+			]
+			},
+			 options: {
+			    indexAxis: 'y',
+				legend: {
+					display: true,
+				},
+				
+                scales: {
+                     yAxes: [{
+                        stacked: true // this also..
+                     }],
+                     xAxes: [{
+                        stacked: true // this also..
+                     }]
+                }
+			}
+		});  
+	};
+	
+	if  (typeof Chart === 'function') {
+			indicateurPopAge_b.getData();
+
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js', function() {
+				indicateurPopAge_b.getData();
+
+            });
+	}	
+	
+</script>

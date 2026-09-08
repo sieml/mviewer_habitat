@@ -1,0 +1,229 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+					<div class="col-xs-2" style="padding-right:0px; padding-left:5px; margin-top:3%;">
+						<img class="img-responsive" src="./apps/observatoire_habitat/template/img/habitants.svg" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{avg_prix_tab}}€</div>
+						<div class="title-number" style="text-align:center;">
+							<p>Prix moyen au m² d'un terrain à bâtir</p>
+						</div>
+						<div class="title-number" style="color: #2F4455;text-align:center;"">
+							<p>{{avg_prix_tab_interco}}€ pour l'EPCI</p>
+						</div>							
+					</div>
+    				<div class="col-xs-4" style="margin-left:3%;">
+    					<canvas id="ChartAvgPrixTab"></canvas>
+    					<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Evolution du prix du terrain à bâtir au m²</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{anneemut}}</i></br></p></br>
+    					</div> 
+    				</div>
+
+    				
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{anneemut}} - Source : DVF</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>			
+{{/features}}
+
+
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		color: #2F4455;
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			color: #354753;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			color: #518299;
+			/*margin-top:0%;*/
+		}
+</style>
+
+
+<script>
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}	
+	var nb_vente=[];
+	{{#features}}
+		nb_vente.push('{{nb_vente}}');
+	{{/features}}		
+	
+	var avg_prix_tab_n0=[];
+	{{#features}}
+		avg_prix_tab_n0.push('{{avg_prix_tab_n0}}');
+	{{/features}}	
+	var avg_prix_tab_n1=[];
+	{{#features}}
+		avg_prix_tab_n1.push('{{avg_prix_tab_n1}}');
+	{{/features}}	
+	var avg_prix_tab_n2=[];
+	{{#features}}
+		avg_prix_tab_n2.push('{{avg_prix_tab_n2}}');
+	{{/features}}	
+	var avg_prix_tab_n3=[];
+	{{#features}}
+		avg_prix_tab_n3.push('{{avg_prix_tab_n3}}');
+	{{/features}}
+	var avg_prix_tab_n4=[];
+	{{#features}}
+		avg_prix_tab_n4.push('{{avg_prix_tab_n4}}');
+	{{/features}}	
+	var avg_prix_tab_n5=[];
+	{{#features}}
+		avg_prix_tab_n5.push('{{avg_prix_tab_n5}}');
+	{{/features}}	
+	
+
+		
+	var avg_prix_tab_n0_interco=[];
+	{{#features}}
+		avg_prix_tab_n0_interco.push('{{avg_prix_tab_n0_interco}}');
+	{{/features}}	
+	var avg_prix_tab_n1_interco=[];
+	{{#features}}
+		avg_prix_tab_n1_interco.push('{{avg_prix_tab_n1_interco}}');
+	{{/features}}	
+	var avg_prix_tab_n2_interco=[];
+	{{#features}}
+		avg_prix_tab_n2_interco.push('{{avg_prix_tab_n2_interco}}');
+	{{/features}}	
+	var avg_prix_tab_n3_interco=[];
+	{{#features}}
+		avg_prix_tab_n3_interco.push('{{avg_prix_tab_n3_interco}}');
+	{{/features}}
+	var avg_prix_tab_n4_interco=[];
+	{{#features}}
+		avg_prix_tab_n4_interco.push('{{avg_prix_tab_n4_interco}}');
+	{{/features}}	
+	var avg_prix_tab_n5_interco=[];
+	{{#features}}
+	    avg_prix_tab_n5_interco.push('{{avg_prix_tab_n5_interco}}');
+	{{/features}}	
+	
+	
+	console.log(avg_prix_tab_n5)
+    var indicateurPrixTab = {};
+	indicateurPrixTab.getData = function() {
+		var data = {ChartAvgPrixTab: {labels:["N-5","N-4", "N-3", "N-2" ,"N-1","N0"], data: {datasets: [
+		    [avg_prix_tab_n5[0] ,avg_prix_tab_n4[0],avg_prix_tab_n3[0],avg_prix_tab_n2[0],avg_prix_tab_n1[0],avg_prix_tab_n0[0]],
+		    [avg_prix_tab_n5_interco[0] ,avg_prix_tab_n4_interco[0],avg_prix_tab_n3_interco[0],avg_prix_tab_n2_interco[0],avg_prix_tab_n1_interco[0],avg_prix_tab_n0_interco[0]],
+		]}}};
+		indicateurPrixTab.drawChart(data);
+	};
+    
+	indicateurPrixTab.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartAvgPrixTab");
+			var maxscale = Math.max.apply(this, data.ChartAvgPrixTab.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartAvgPrixTab = new Chart(ctx2, {
+			type: 'line',
+			data: {
+				labels: data.ChartAvgPrixTab.labels,
+				datasets: [
+				    {
+						label: nom_officiel,
+						borderColor: "rgb(81, 130, 153)",
+						backgroundColor:"rgb(81, 130, 153,0.15)",
+						borderWidth: '2',
+						data: data.ChartAvgPrixTab.data.datasets[0],
+						stack:'Stack 0'
+				    },
+                    {
+						label: 'EPCI',
+						borderColor: "rgb(147, 220, 235)",
+						backgroundColor:"rgb(147, 220, 235,0.15)",
+						borderWidth: '2',
+						data: data.ChartAvgPrixTab.data.datasets[1],
+						stack:'Stack 0'
+					}
+				]
+			},
+			 options: {
+				legend: {
+					display: false,
+				},
+                scales: {
+                     yAxes: [{
+                        stacked: false // this also..
+                     }]
+                },
+
+			}
+		});  
+	};
+	
+	 if  (typeof Chart === 'function') {
+			indicateurPrixTab.getData();
+
+    } else {
+            $.get('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js', function() {
+				indicateurPrixTab.getData();
+
+            });
+	}	
+	
+</script>	

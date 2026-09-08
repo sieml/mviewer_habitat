@@ -1,0 +1,218 @@
+{{#features}}
+<div id="CarouselMenages" class="carousel slide" data-ride="carousel" data-interval="false">
+	
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+
+					
+					<div class="col-xs-2" style="padding-right:0px; margin-top:3%;">
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/menage.svg" style="width:60px; margin-top:50%; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{nb_residences_principales}}
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>résidences principales</p>
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>{{nb_residences_principales_comp}} pour {{nom_officiel_comp}}</p>
+								</div>									
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/menage.svg" style="width:60px; margin-top:50%; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{part_locataires_hlm_dans_residences_principales}}
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>% de locataires HLM</p>
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>{{part_locataires_hlm_dans_residences_principales_comp}}% pour {{nom_officiel_comp}}</p>
+								</div>									
+							</div>	
+						</div>
+					</div>
+					
+					
+					<div class="col-xs-4" >
+						<canvas id="ChartTypoMen1"></canvas>
+						<div style="margin-top:10px; text-align:center">
+							<p><b>Statuts d'occupation</b></p>
+							<p><i>{{nom_officiel}} - {{serie}}</i></p>
+						</div> 
+					</div>
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{serie}} - Source : INSEE</i></p>
+						</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>			
+{{/features}}
+
+<style>
+
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+	//Récupération des attributs
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}	
+	var nb_logements=[];
+	{{#features}}
+		nb_logements.push('{{nb_logements}}');
+	{{/features}}
+	
+	var tx_logements=[];
+	{{#features}}
+		tx_logements.push('{{tx_logements}}');
+	{{/features}}
+	
+	var part_proprietaires_dans_residences_principales=[];
+	{{#features}}
+		part_proprietaires_dans_residences_principales.push('{{part_proprietaires_dans_residences_principales}}');
+	{{/features}}
+	
+	var part_locataires_dans_residences_principales=[];
+	{{#features}}
+		part_locataires_dans_residences_principales.push('{{part_locataires_dans_residences_principales}}');
+	{{/features}}
+	
+	var part_locataires_hlm_dans_residences_principales=[];
+	{{#features}}
+		part_locataires_hlm_dans_residences_principales.push('{{part_locataires_hlm_dans_residences_principales}}');
+	{{/features}}
+
+	var part_proprietaires_dans_residences_principales_comp=[];
+	{{#features}}
+		part_proprietaires_dans_residences_principales_comp.push('{{part_proprietaires_dans_residences_principales_comp}}');
+	{{/features}}
+	
+	var part_locataires_dans_residences_principales_comp=[];
+	{{#features}}
+		part_locataires_dans_residences_principales_comp.push('{{part_locataires_dans_residences_principales_comp}}');
+	{{/features}}
+	
+	var part_locataires_hlm_dans_residences_principales_comp=[];
+	{{#features}}
+		part_locataires_hlm_dans_residences_principales_comp.push('{{part_locataires_hlm_dans_residences_principales_comp}}');
+	{{/features}}
+
+
+
+	
+	var indicateurTypMen_a = {};
+	indicateurTypMen_a.getData = function() {
+		var data = {ChartTypoMen1: {labels:[nom_officiel,nom_officiel_comp ], data: {datasets: [[part_proprietaires_dans_residences_principales[0],part_proprietaires_dans_residences_principales_comp[0]],[part_locataires_dans_residences_principales[0],part_locataires_dans_residences_principales_comp[0]]]}}};
+		indicateurTypMen_a.drawChart(data);
+	};
+
+	
+	indicateurTypMen_a.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartTypoMen1");
+			var maxscale = Math.max.apply(this, data.ChartTypoMen1.data.datasets[0]) / 5;
+			maxscale = 100;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartTypoMen1 = new Chart(ctx2, {
+			type: 'bar',
+			data: {
+				labels: data.ChartTypoMen1.labels,
+				datasets: [
+				    {
+						label: 'Propriétaires',
+						backgroundColor: "#005EA8",
+						borderColor: "#005EA8",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[0]
+			    	},
+				    {
+						label: 'Locataires',
+						backgroundColor: "#7EA5D0",
+						borderColor: "#7EA5D0",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[1]
+			    	}
+
+			]
+			},
+			 options: {
+			    indexAxis: 'y',
+				legend: {
+					display: true,
+				},
+				
+                scales: {
+                     yAxes: [{
+                        stacked: true
+                     }],
+                     xAxes: [{
+						      stacked: true,
+						      ticks: {
+						        max: 100
+						      }
+						    }]
+                }
+			}
+		});  
+	};
+	
+
+	
+	
+	
+	
+	
+	 if  (typeof Chart === 'function') {
+            indicateurTypMen_a.getData();
+
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js', function() {
+				indicateurTypMen_a.getData();
+            });
+	}
+	

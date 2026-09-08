@@ -1,0 +1,275 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+
+
+					<div class="col-xs-2" style="padding-right:0px; padding-left:5px; margin-top:3%;">
+						<img class="img-responsive" src="./apps/template/img/demande_satisfaite.jpg" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{tx_attribution}}%</div>
+						<div class="title-number" style="text-align:center;">
+							<p>Taux des demandes satisfaites de logement social</p>
+						</div>
+	
+
+					</div>
+
+
+					<div class="col-xs-4" style="height: 225px; position: relative;">
+						<canvas id="ChartEvolDemandesSatisfaites" style="height: 100%; width: 100%;" ></canvas>
+						<div style="margin-top:10px; text-align:center">
+						    <!--<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Evolution du taux d'attribution des logements</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{millesime}}</i></br></p></br>-->			    
+						</div> 
+					</div>
+
+					<div class="col-xs-4" style="height: 225px; position: relative;">
+						<canvas id="ChartTaille" style="height: 100%; width: 100%;" ></canvas>
+						<div style="margin-top:10px; text-align:center">
+						    <!--<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Types de logements demandés et attribués</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{millesime}}</i></br></p></br>-->			    
+						</div> 
+					</div>
+
+
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{millesime}} - Source : CREHA OUEST</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+{{/features}}
+
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+
+	
+	var tx_attribution=[];
+	{{#features}}
+		tx_attribution.push('{{tx_attribution}}');
+	{{/features}}	
+
+
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}	
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}	
+
+
+	var tx_attribution_comp=[];
+	{{#features}}
+		tx_attribution_comp.push('{{tx_attribution_comp}}');
+	{{/features}}	
+
+	var nb_att_t1=[];
+	{{#features}}
+		nb_att_t1.push('{{nb_att_t1}}');
+	{{/features}}	
+	var nb_att_t2=[];
+	{{#features}}
+		nb_att_t2.push('{{nb_att_t2}}');
+	{{/features}}	
+	var nb_att_t3=[];
+	{{#features}}
+		nb_att_t3.push('{{nb_att_t3}}');
+	{{/features}}	
+	var nb_att_t4=[];
+	{{#features}}
+		nb_att_t4.push('{{nb_att_t4}}');
+	{{/features}}	
+	var nb_att_t5plus=[];
+	{{#features}}
+		nb_att_t5plus.push('{{nb_att_t5plus}}');
+	{{/features}}	
+
+	var nb_ddes_t1=[];
+	{{#features}}
+		nb_ddes_t1.push('{{nb_ddes_t1}}');
+	{{/features}}	
+	var nb_ddes_t2=[];
+	{{#features}}
+		nb_ddes_t2.push('{{nb_ddes_t2}}');
+	{{/features}}	
+	var nb_ddes_t3=[];
+	{{#features}}
+		nb_ddes_t3.push('{{nb_ddes_t3}}');
+	{{/features}}	
+	var nb_ddes_t4=[];
+	{{#features}}
+		nb_ddes_t4.push('{{nb_ddes_t4}}');
+	{{/features}}	
+	var nb_ddes_t5plus=[];
+	{{#features}}
+		nb_ddes_t5plus.push('{{nb_ddes_t5plus}}');
+	{{/features}}	
+
+	
+	{{#features}}
+		const chart_data = {{{chart_data}}};
+	{{/features}}	
+	console.log(chart_data);
+
+
+
+	var indicateurTaille = {};
+	indicateurTaille.getData = function () {
+		var data = {
+			ChartTaille: {
+				labels: ["T1", "T2", "T3", "T4", "T5+"],
+				datasets: [
+					[nb_ddes_t1[0], nb_ddes_t2[0], nb_ddes_t3[0], nb_ddes_t4[0], nb_ddes_t5plus[0]],
+					[nb_att_t1[0], nb_att_t2[0], nb_att_t3[0], nb_att_t4[0], nb_att_t5plus[0]]
+					
+				]
+			}
+		};
+		indicateurTaille.drawChart(data);
+		console.log("data ChartTaille", data);
+	};
+
+	indicateurTaille.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartTaille");
+			var maxscale = Math.max.apply(this, data.ChartTaille.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartTaille = new Chart(ctx2, {
+			type: 'bar',
+			data: {
+				labels: data.ChartTaille.labels,
+				datasets: [
+				    {
+						label: 'Demandes',
+						backgroundColor: "#005EA8",
+						borderColor: "#005EA8",
+						borderWidth: 1,
+						data: data.ChartTaille.datasets[0],
+						stack:'Stack 0'
+			    	},
+				    {
+						label: 'Attributions',
+						backgroundColor: "#64BE53",
+						borderColor: "#64BE53",
+						borderWidth: 1,
+						data: data.ChartTaille.datasets[1],
+						stack:'Stack 1'
+			    	},
+				]
+			},
+			 options: {
+		      title: {
+		        display: true,
+		        text: 'Demandes et attributions par typologie des logements'
+		      },			 
+			}
+		});  
+	};
+
+
+
+
+
+	var indicateurEvolDemandesSatisfaites = {};
+ 	indicateurEvolDemandesSatisfaites.drawChart = function (data) {
+			var ctx3 = document.getElementById("ChartEvolDemandesSatisfaites");
+			var ChartEvolDemandesSatisfaites = new Chart(ctx3, {
+			   type: 'line', // ou 'bar' si tu préfères un histogramme
+			    data: chart_data,
+				 options: {
+				    plugins: {
+				      title: {
+				        display: true,
+				        text: 'Evolution des demandes et attributions de logements sociaux (base 100 en 2021)'
+				      },
+				    },
+				    responsive: true
+				  }
+			});
+	};
+
+
+	if  (typeof Chart === 'function') {
+			indicateurEvolDemandesSatisfaites.drawChart();
+			indicateurTaille.getData()
+
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js', function() {
+				indicateurEvolDemandesSatisfaites.drawChart();
+				indicateurTaille.getData()
+            });
+	}	
+
+
+
+
+</script>

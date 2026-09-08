@@ -1,0 +1,309 @@
+{{#features}}
+<div id="CarouselMenages" class="carousel slide" data-ride="carousel" data-interval="false">
+	
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+
+					
+					<div class="col-xs-2" style="padding-right:0px; margin-top:3%;">
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/menage.png" style="width:60px; margin-top:50%; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{nb_pers_men}}
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>Personnes par ménage</p>
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>{{nb_pers_men_comp}} pour {{nom_officiel_comp}}</p>
+								</div>									
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/population2.png" style="width:60px; margin-top:50%; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{nb_men}}
+								</div>
+								<div class="title-number" style="text-align:left; ">
+									<p>Nombre de ménages</p>
+								</div>	
+								<div class="title-number" style="text-align:left; ">
+								    <p>{{nb_men_comp}} pour {{nom_officiel_comp}}</p>
+								</div>									
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="col-xs-2" >
+						<canvas id="ChartProfilMenages"></canvas>
+						<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Profil des ménages</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{serie}}</i></br></p></br>
+						</div> 
+					</div>
+					<div class="col-xs-2" >
+						<canvas id="ChartProfilMenages2"></canvas>
+						<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Profil des ménages</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel_comp}}, {{serie}}</i></br></p></br>
+						</div> 
+					</div>
+
+
+
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{serie}} - Source : INSEE</i></p>
+						</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>			
+{{/features}}
+
+<style>
+
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+	//Récupération des attributs
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}	
+	var nb_men=[];
+	{{#features}}
+		nb_men.push('{{nb_men}}');
+	{{/features}}
+	
+	var nb_pers_men=[];
+	{{#features}}
+		nb_pers_men.push('{{nb_pers_men}}');
+	{{/features}}
+	
+	var tx_fam_monop=[];
+	{{#features}}
+		tx_fam_monop.push('{{tx_fam_monop}}');
+	{{/features}}
+	
+	var tx_men_1_pers=[];
+	{{#features}}
+		tx_men_1_pers.push('{{tx_men_1_pers}}');
+	{{/features}}
+	
+	var tx_fam_s_enf=[];
+	{{#features}}
+		tx_fam_s_enf.push('{{tx_fam_s_enf}}');
+	{{/features}}
+	
+	var tx_fam_1_enf=[];
+	{{#features}}
+		tx_fam_1_enf.push('{{tx_fam_1_enf}}');
+	{{/features}}	
+	
+	var tx_fam_2_enf=[];
+	{{#features}}
+		tx_fam_2_enf.push('{{tx_fam_2_enf}}');
+	{{/features}}	
+	
+	var tx_fam_3_enf=[];
+	{{#features}}
+		tx_fam_3_enf.push('{{tx_fam_3_enf}}');
+	{{/features}}	
+
+
+	var nb_pers_men_comp=[];
+	{{#features}}
+		nb_pers_men_comp.push('{{nb_pers_men_comp}}');
+	{{/features}}
+	
+	var tx_fam_monop_comp=[];
+	{{#features}}
+		tx_fam_monop_comp.push('{{tx_fam_monop_comp}}');
+	{{/features}}
+	
+	var tx_men_1_pers_comp=[];
+	{{#features}}
+		tx_men_1_pers_comp.push('{{tx_men_1_pers_comp}}');
+	{{/features}}
+	
+	var tx_fam_s_enf_comp=[];
+	{{#features}}
+		tx_fam_s_enf_comp.push('{{tx_fam_s_enf_comp}}');
+	{{/features}}
+	
+	var tx_fam_1_enf_comp=[];
+	{{#features}}
+		tx_fam_1_enf_comp.push('{{tx_fam_1_enf_comp}}');
+	{{/features}}	
+	
+	var tx_fam_2_enf_comp=[];
+	{{#features}}
+		tx_fam_2_enf_comp.push('{{tx_fam_2_enf_comp}}');
+	{{/features}}	
+	
+	var tx_fam_3_enf_comp=[];
+	{{#features}}
+		tx_fam_3_enf_comp.push('{{tx_fam_3_enf_comp}}');
+	{{/features}}	
+
+
+
+	var indicateurProfilMenages_a = {};
+	indicateurProfilMenages_a.getData = function() {
+		var data = {ChartProfilMenages: {labels:[ "Familles sans enfant", "Familles avec 1 enfant" , "Familles avec 2 enfants","Familles avec 3 enfants ou plus"], data: {datasets: [[tx_fam_s_enf,tx_fam_1_enf,tx_fam_2_enf,tx_fam_3_enf]]}}};
+		indicateurProfilMenages_a.drawChart(data);
+	};
+	var indicateurProfilMenages_b = {};
+	indicateurProfilMenages_b.getData = function() {
+		var data = {ChartProfilMenages2: {labels:[ "Familles sans enfant", "Familles avec 1 enfant" , "Familles avec 2 enfants","Familles avec 3 enfants ou plus"], data: {datasets: [[tx_fam_s_enf_comp,tx_fam_1_enf_comp,tx_fam_2_enf_comp,tx_fam_3_enf_comp]]}}};
+		indicateurProfilMenages_b.drawChart(data);
+	};	
+	
+
+	indicateurProfilMenages_a.drawChart = function (data) {
+			var ctx1 = document.getElementById("ChartProfilMenages");
+			var maxscale = Math.max.apply(this, data.ChartProfilMenages.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx1.getContext("2d").canvas.width = 100;
+			ctx1.getContext("2d").canvas.height = 55;
+			var ChartTxEmplSal = new Chart(ctx1, {
+			type: 'doughnut',
+			data: {
+				labels: data.ChartProfilMenages.labels,
+				datasets: [{
+							label: "Part selon le type",
+							backgroundColor: [
+								"#005EA8",
+								"#7EA5D0",
+								"#61B850",
+								"#c7edc0"
+							],
+							borderWidth: 3,
+							borderSkipped:'left',
+							data: data.ChartProfilMenages.data.datasets[0]
+							}]
+			},
+			  options: {
+				legend: {
+					position: 'right',
+				},
+				tooltips: {					
+					titleFontFamily:"roboto_bold",
+					titleFontSize:13,
+					bodyFontFamily:"roboto_regular",
+					backgroundColor:"rgba(36, 36, 36, 0.85)",
+					callbacks: {
+						label: function(tooltipItem, data) {
+							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(2).toLocaleString() + "%";
+
+						}
+					}
+		        }
+			}
+		});  
+	};
+	
+	indicateurProfilMenages_b.drawChart = function (data) {
+			console.log(data)
+			var ctx1 = document.getElementById("ChartProfilMenages2");
+			var maxscale = Math.max.apply(this, data.ChartProfilMenages2.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			console.log(data.ChartProfilMenages2.data.datasets[0])
+			ctx1.getContext("2d").canvas.width = 100;
+			ctx1.getContext("2d").canvas.height = 55;
+			var ChartTxEmplSal2 = new Chart(ctx1, {
+			type: 'doughnut',
+			data: {
+				labels: data.ChartProfilMenages2.labels,
+				datasets: [{
+							label: "Part selon le type",
+							backgroundColor: [
+								"#005EA8",
+								"#7EA5D0",
+								"#61B850",
+								"#c7edc0"
+							],
+							borderWidth: 3,
+							borderSkipped:'left',
+							data: data.ChartProfilMenages2.data.datasets[0]
+							}]
+			},
+			  options: {
+				legend: {
+					position: 'right',
+				},
+				tooltips: {					
+					titleFontFamily:"roboto_bold",
+					titleFontSize:13,
+					bodyFontFamily:"roboto_regular",
+					backgroundColor:"rgba(36, 36, 36, 0.85)",
+					callbacks: {
+						label: function(tooltipItem, data) {
+							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(2).toLocaleString() + "%";
+
+						}
+					}
+		        }
+			}
+		});  
+	};	
+	
+	
+	
+	
+	
+	 if  (typeof Chart === 'function') {
+            indicateurProfilMenages_a.getData();
+            indicateurProfilMenages_b.getData();
+			
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js', function() {
+				indicateurProfilMenages_a.getData();
+                indicateurProfilMenages_b.getData();
+            });
+	}
+
+</script>
+	

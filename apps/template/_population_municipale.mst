@@ -1,0 +1,242 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">
+				
+					<div class="col-xs-2" style="padding-right:0px; ">
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/habitants.svg" style="width:60px; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; color:#354753;font-size:24px;">
+									{{popmunicipale}}
+								</div>
+								<div class="title-number" style="text-align: left;color:#518299;">
+        							<p>Population municipale</p>
+								</div>
+								<div class="title-number" style="text-align: left;color:#354753;">
+        							<p>{{popmunicipale_interco}} pour l'EPCI</p>
+								</div>									
+							</div>	
+						</div>
+                        <div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/part.svg" style="width:60px; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; color:#354753;font-size:24px;">
+									{{tx_popmunicipale_interco}}%
+								</div>
+								<div class="title-number" style="text-align:left; color:#518299;">
+									<p>Part de la population de l'EPCI</p>
+								</div>	
+							</div>
+						</div>
+					</div>				
+				
+				
+					<div class="col-xs-2" >
+						<img class="img-responsive" src="./apps/template/img/habitants.svg" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{densitepopulation}}</div>
+						<div class="title-number" style="text-align:center;">
+							<p>Densité de population (hab/km²)</p>
+						</div>
+					</div>
+					
+    				<div class="col-xs-4" >
+    					<canvas id="ChartPopAge"></canvas>
+    					<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Répartition de la population selon la catégorie d'âge</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{serie}}</i></br></p></br>
+    					</div> 
+    				</div>
+
+    				
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{serie}} - Source : INSEE RP</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+{{/features}}
+
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		color: #2F4455;
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			color: #354753;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			color: #518299;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+
+	
+	var tx_25m=[];
+	{{#features}}
+		tx_25m.push('{{tx_25m}}');
+	{{/features}}	
+	
+	var tx_25_64=[];
+	{{#features}}
+		tx_25_64.push('{{tx_25_64}}');
+	{{/features}}	
+	
+	var tx_65p=[];
+	{{#features}}
+		tx_65p.push('{{tx_65p}}');
+	{{/features}}	
+
+	var tx_25m_interco=[];
+	{{#features}}
+		tx_25m_interco.push('{{tx_25m_interco}}');
+	{{/features}}	
+	
+	var tx_25_64_interco=[];
+	{{#features}}
+		tx_25_64_interco.push('{{tx_25_64_interco}}');
+	{{/features}}	
+	
+	var tx_65p_interco=[];
+	{{#features}}
+		tx_65p_interco.push('{{tx_65p_interco}}');
+	{{/features}}	
+	
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+	
+
+	
+	var indicateurPopAge_b = {};
+	indicateurPopAge_b.getData = function() {
+		var data = {ChartPopAge: {labels:[nom_officiel,"EPCI"], data: {datasets: [[tx_25m[0],tx_25m_interco[0]],[tx_25_64[0],tx_25_64_interco[0]],[tx_65p[0],tx_65p_interco[0]]], skipNull: true }}};
+		indicateurPopAge_b.drawChart(data);
+	};
+    
+	indicateurPopAge_b.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartPopAge");
+			var maxscale = Math.max.apply(this, data.ChartPopAge.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartPopAge = new Chart(ctx2, {
+			type: 'horizontalBar',
+			data: {
+				labels: data.ChartPopAge.labels,
+				datasets: [
+				    {
+						label: 'Moins de 25 ans',
+						backgroundColor: "#f1946d",
+						borderColor: "#f1946d",
+						borderWidth: 1,
+						data: data.ChartPopAge.data.datasets[0]
+			    	},
+				    {
+						label: '25-64 ans',
+						backgroundColor: "#518299",
+						borderColor: "#518299",
+						borderWidth: 1,
+						data: data.ChartPopAge.data.datasets[1]
+			    	},
+				    {
+						label: '65 ans et plus',
+						backgroundColor: "#93dceb",
+						borderColor: "#93dceb",
+						borderWidth: 1,
+						data: data.ChartPopAge.data.datasets[2]
+			    	}
+			]
+			},
+			 options: {
+			    indexAxis: 'y',
+				legend: {
+					display: true,
+				},
+				
+                scales: {
+                     yAxes: [{
+                        stacked: true // this also..
+                     }],
+                     xAxes: [{
+                        stacked: true // this also..
+                     }]
+                }
+			}
+		});  
+	};
+	
+	if  (typeof Chart === 'function') {
+			indicateurPopAge_b.getData();
+
+    } else {
+            $.get('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js', function() {
+				indicateurPopAge_b.getData();
+
+            });
+	}	
+	
+</script>

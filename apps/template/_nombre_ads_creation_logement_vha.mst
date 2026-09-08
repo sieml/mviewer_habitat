@@ -1,0 +1,227 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+					<div class="col-xs-2" style="padding-right:0px; padding-left:5px; margin-top:3%;">
+						<img class="img-responsive" src="./apps/observatoire_habitat/template/img/habitants.svg" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{nb_ads_creation_logement}}</div>
+						<div class="title-number" style="text-align:center;">
+							<p>Nombre d'ADS avec création de logements</p>
+						</div>
+						<div class="title-number" style="text-align:center;"">
+							<p>{{nb_ads_creation_logement_interco}} pour l'EPCI</p>
+						</div>							
+					</div>
+					<div class="col-xs-2" style="padding-right:0px; padding-left:5px; margin-top:3%;">
+						<img class="img-responsive" src="apps/observatoire_habitat/template/img/part.svg" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{tx_ads_creation_logement_interco}}%</div>
+						<div class="title-number" style="text-align:center;">
+							<p>Part des ADS avec création de logement de l'EPCI</p>
+						</div>
+
+					</div>					
+					
+    				<div class="col-xs-4" style="margin-left:3%;">
+    					<canvas id="ChartNbAdsCreationLogement"></canvas>
+    					<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Nombre d'ADS avec création de logements</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{serie}}</i></br></p></br>
+    					</div> 
+    				</div>
+
+    				
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{serie}} - Source : SITADEL</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+{{/features}}
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n0=[];
+	{{#features}}
+		nb_ads_creation_logement_n0.push('{{nb_ads_creation_logement_n0}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n1=[];
+	{{#features}}
+		nb_ads_creation_logement_n1.push('{{nb_ads_creation_logement_n1}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n2=[];
+	{{#features}}
+		nb_ads_creation_logement_n2.push('{{nb_ads_creation_logement_n2}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n3=[];
+	{{#features}}
+		nb_ads_creation_logement_n3.push('{{nb_ads_creation_logement_n3}}');
+	{{/features}}
+	var nb_ads_creation_logement_n4=[];
+	{{#features}}
+		nb_ads_creation_logement_n4.push('{{nb_ads_creation_logement_n4}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n5=[];
+	{{#features}}
+		nb_ads_creation_logement_n5.push('{{nb_ads_creation_logement_n5}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n0_interco=[];
+	{{#features}}
+		nb_ads_creation_logement_n0_interco.push('{{nb_ads_creation_logement_n0_interco}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n1_interco=[];
+	{{#features}}
+		nb_ads_creation_logement_n1_interco.push('{{nb_ads_creation_logement_n1_interco}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n2_interco=[];
+	{{#features}}
+		nb_ads_creation_logement_n2_interco.push('{{nb_ads_creation_logement_n2_interco}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n3_interco=[];
+	{{#features}}
+		nb_ads_creation_logement_n3_interco.push('{{nb_ads_creation_logement_n3_interco}}');
+	{{/features}}
+	var nb_ads_creation_logement_n4_interco=[];
+	{{#features}}
+		nb_ads_creation_logement_n4_interco.push('{{nb_ads_creation_logement_n4_interco}}');
+	{{/features}}	
+	var nb_ads_creation_logement_n5_interco=[];
+	{{#features}}
+		nb_ads_creation_logement_n5_interco.push('{{nb_ads_creation_logement_n5_interco}}');
+	{{/features}}	
+	
+	
+	
+    var indicateurNbAdsCreationLogement = {};
+	indicateurNbAdsCreationLogement.getData = function() {
+		var data = {ChartNbAdsCreationLogement: {labels:["2020", "2021", "2022" ,"2023","2024"], data: {datasets: [[nb_ads_creation_logement_n4[0],nb_ads_creation_logement_n3[0],nb_ads_creation_logement_n2[0],nb_ads_creation_logement_n1[0],nb_ads_creation_logement_n0[0]],[nb_ads_creation_logement_n4_interco[0],nb_ads_creation_logement_n3_interco[0],nb_ads_creation_logement_n2_interco[0],nb_ads_creation_logement_n1_interco[0],nb_ads_creation_logement_n0_interco[0]]]}}};
+		indicateurNbAdsCreationLogement.drawChart(data);
+	};
+
+	indicateurNbAdsCreationLogement.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartNbAdsCreationLogement");
+			var maxscale = Math.max.apply(this, data.ChartNbAdsCreationLogement.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartNbAdsCreationLogement = new Chart(ctx2, {
+			type: 'bar',
+			data: {
+				labels: data.ChartNbAdsCreationLogement.labels,
+				datasets: [{
+							label: nom_officiel,
+							backgroundColor: "#518299",
+							borderColor: "#518299",
+							borderWidth: 1,
+							borderSkipped:'left',
+							data: data.ChartNbAdsCreationLogement.data.datasets[0]
+							},
+                            {
+							label: 'EPCI',
+							backgroundColor: "#93DCEB",
+							borderColor: "#93DCEB",
+							borderWidth: 1,
+							borderSkipped:'left',
+							data: data.ChartNbAdsCreationLogement.data.datasets[1]
+							}]
+			},
+			 options: {
+				legend: {
+					display: true,
+				},
+
+				tooltips: {					
+					titleFontFamily:"roboto_bold",
+					titleFontSize:13,
+					bodyFontFamily:"roboto_regular",
+					backgroundColor:"rgba(36, 36, 36, 0.85)",
+					callbacks: {
+						label: function(tooltipItem, data) {
+							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(2).toLocaleString() + " ADS avec création de logement";
+
+						}
+					}
+		        }
+			}
+			});  
+	};
+	
+	 if  (typeof Chart === 'function') {
+			indicateurNbAdsCreationLogement.getData();
+
+    } else {
+            $.get('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js', function() {
+				indicateurNbAdsCreationLogement.getData();
+
+            });
+	}	
+	
+</script>	

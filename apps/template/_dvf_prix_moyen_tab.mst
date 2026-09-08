@@ -1,0 +1,286 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+					<div class="col-xs-2" style="padding-right:0px; ">
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/terrain-a-vendre.png" style="width:60px; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left;font-size:24px;">
+									{{avg_prix_tab_mc}}
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>€/m²</p>
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>{{avg_prix_tab_mc_comp}} pour {{nom_officiel_comp}}</p>
+								</div>									
+							</div>	
+						</div>
+            <div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/etiquette-de-prix.png" style="width:60px; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left;font-size:24px;">
+									{{avg_prix_tab}}€
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>Prix moyen d'un terrain</p>
+								</div>								
+								<div class="title-number" style="text-align:left;">
+									<p>{{avg_prix_tab_comp}}€ pour {{nom_officiel_comp}}</p>
+								</div>	
+							</div>
+						</div>
+					</div>	
+					
+    				<div class="col-xs-4" style="margin-left:3%;">
+    					<canvas id="Chart"></canvas>
+    					<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Prix moyen des ventes</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{anneemut}}</i></br></p></br>
+    					</div> 
+    				</div>
+   				
+					  <div class="col-xs-5">
+					    <div style="font-family:'roboto_bold'; font-size:14px; color:#2F4455; margin-bottom:5px;">Répartition des terrains vendus par superficie</div>
+							<table class="table table-bordered table-condensed" style="font-size:11px; width:100%;">
+							  <thead style="background-color:#f0f4f7; font-family:'roboto_bold'; color:#2F4455;">
+							    <tr>
+							      <th></th>
+							      <th colspan="2" style="text-align:center;">{{nom_officiel}}</th>
+							      <th colspan="2" style="text-align:center;">{{nom_officiel_comp}}</th>
+							    </tr>
+							    <tr>
+							      <th style="text-align:left;">Superficie</th>
+							      <th style="text-align:right;">Nb terrains vendus</th>
+							      <th style="text-align:right;">Prix moyen au m²</th>
+							      <th style="text-align:right;">Nb terrains vendus</th>
+							      <th style="text-align:right;">Prix moyen au m²</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td>< 500 m²</td>
+							      <td style="text-align:right;">{{nb_tab_500}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_500}}</td>
+							      <td style="text-align:right;">{{nb_tab_500_comp}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_500_comp}}</td>
+							    </tr>
+							    <tr>
+							      <td>500 – 800 m²</td>
+							      <td style="text-align:right;">{{nb_tab_500_800}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_500_800}}</td>
+							      <td style="text-align:right;">{{nb_tab_500_800_comp}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_500_800_comp}}</td>
+							    </tr>
+							    <tr>
+							      <td>800 – 1200 m²</td>
+							      <td style="text-align:right;">{{nb_tab_800_1200}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_800_1200}}</td>
+							      <td style="text-align:right;">{{nb_tab_800_1200_comp}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_800_1200_comp}}</td>
+							    </tr>
+							    <tr>
+							      <td>1200 – 2000 m²</td>
+							      <td style="text-align:right;">{{nb_tab_1200_2000}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_1200_2000}}</td>
+							      <td style="text-align:right;">{{nb_tab_1200_2000_comp}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_1200_2000_comp}}</td>
+							    </tr>
+							    <tr>
+							      <td>> 2000 m²</td>
+							      <td style="text-align:right;">{{nb_tab_2000}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_2000}}</td>
+							      <td style="text-align:right;">{{nb_tab_2000_comp}}</td>
+							      <td style="text-align:right;">{{avg_prix_tab_2000_comp}}</td>
+							    </tr>
+							  </tbody>
+							</table>
+					  </div>
+					</div>
+
+
+
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{anneemut}} - Source : DVF</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>			
+{{/features}}
+
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+
+<script>
+  var nom_officiel = [];
+	var chartDataList = {
+	  global: null,
+
+	};
+
+
+
+	let chartInstance = null;
+  {{#features}}
+    nom_officiel.push("{{nom_officiel}}");
+
+
+  try {
+    chartDataList.global = JSON.parse('{{{chart_data_tab}}}');
+
+  } catch (e) {
+    console.error("Erreur de parsing des chart_data :", e);
+  }
+
+  {{/features}}
+
+  var indicateurPrixMoyen = {};
+
+
+
+  indicateurPrixMoyen.drawChart = function (data) {
+    var ctx3 = document.getElementById("Chart");
+
+    if (!ctx3 || !data) {
+      console.warn("Canvas ou données manquantes");
+      return;
+    }
+		if (chartInstance) {
+		    chartInstance.destroy();
+		    chartInstance = null; // Détruire l'ancien graphique avant de recréer
+		  }
+
+
+     chartInstance = new Chart(ctx3, {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Évolution du prix moyen au m² d un terrain à bâtir'
+          }
+        },
+        scales: {
+	        y: {
+	          title: {
+	            display: true,
+	            text: 'Prix moyen (€)'
+	          },
+	          beginAtZero: false
+	        },
+	        x: {
+	          title: {
+	            display: true,
+	            text: 'Année'
+	          }
+	        }
+        }
+      }
+    });
+  };
+
+
+
+
+
+
+
+	function loadChartLibraryAndDraw(data) {
+	  if (typeof Chart === 'function') {
+	    indicateurPrixMoyen.drawChart(data);
+	  } else {
+	    $.getScript('https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js')
+	      .done(function () {
+	        indicateurPrixMoyen.drawChart(data);
+	      })
+	      .fail(function () {
+	        console.error("Échec du chargement de Chart.js");
+	      });
+	  }
+	}
+
+  // Exemple : dessiner avec le premier jeu de données s'il existe
+  if (chartDataList.global) {
+      loadChartLibraryAndDraw(chartDataList.global);
+  } else {
+    console.warn("Aucune donnée de graphique disponible");
+  }
+
+
+
+  
+
+
+</script>
+	

@@ -1,0 +1,159 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+					<div class="col-xs-2" style="padding-right:0px; padding-left:5px; margin-top:3%;">
+						<img class="img-responsive" src="./apps/template/img/revenu.png" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{med_niveau_de_vie}}€</div>
+						<div class="title-number" style="text-align:center;">
+							<p>Revenu annuel médian</p>
+						</div>
+					</div>
+					
+    				<div class="col-xs-4" style="margin-left:3%;">
+    					<canvas id="ChartTypoMen2"></canvas>
+    					<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Comparaison du revenu annuel médian</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{serie}}</i></br></p></br>
+    					</div> 
+    				</div>
+
+    				
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{serie}} - Source : INSEE RP</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+{{/features}}
+
+<style>
+
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+
+	
+	var med_niveau_de_vie=[];
+	{{#features}}
+		med_niveau_de_vie.push('{{med_niveau_de_vie}}');
+	{{/features}}	
+	
+	var med_niveau_de_vie_comp=[];
+	{{#features}}
+		med_niveau_de_vie_comp.push('{{med_niveau_de_vie_comp}}');
+	{{/features}}	
+	
+	
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}	
+	
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}	
+		
+
+	
+	var indicateurTypMen_b = {};
+	indicateurTypMen_b.getData = function() {
+		var data = {ChartTypoMen2: {labels:[nom_officiel,nom_officiel_comp], data: {datasets: [[med_niveau_de_vie,med_niveau_de_vie_comp]]}}};
+		indicateurTypMen_b.drawChart(data);
+	};
+
+	indicateurTypMen_b.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartTypoMen2");
+			var maxscale = Math.max.apply(this, data.ChartTypoMen2.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartTypoMen2 = new Chart(ctx2, {
+			type: 'bar',
+			data: {
+				labels: data.ChartTypoMen2.labels,
+				datasets: [{
+							label: nom_officiel,
+							backgroundColor: "#005EA8",
+							borderColor: "#005EA8",
+							borderWidth: 1,
+							borderSkipped:'left',
+							data: data.ChartTypoMen2.data.datasets[0]
+							}]
+			},
+			 options: {
+				legend: {
+					display: false,
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: false,
+							max: maxscale + 5
+						}
+					}]
+				},
+				tooltips: {					
+					titleFontFamily:"roboto_bold",
+					titleFontSize:13,
+					bodyFontFamily:"roboto_regular",
+					backgroundColor:"rgba(36, 36, 36, 0.85)",
+					callbacks: {
+						label: function(tooltipItem, data) {
+							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(0).toLocaleString() + "€";
+
+						}
+					}
+		        }
+			}
+		});  
+	};
+	
+	if  (typeof Chart === 'function') {
+			indicateurTypMen_b.getData();
+
+    } else {
+            $.get('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js', function() {
+				indicateurTypMen_b.getData();
+
+            });
+	}	
+	
+</script>

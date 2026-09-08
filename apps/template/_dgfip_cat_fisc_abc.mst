@@ -1,0 +1,183 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+
+					<div class="col-xs-4" >
+						<canvas id="ChartLog"></canvas>
+						<div style="margin-top:10px; text-align:center">
+    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Catégories fiscales des habitations</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{annee}}</i></br></p></br>
+						</div> 
+					</div>
+
+			
+					
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{annee}} - Source : DGFIP</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>		
+{{/features}}
+
+<style>
+
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+<script>
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+
+
+	var annee=[];
+	{{#features}}
+		annee.push('{{annee}}');
+	{{/features}}	
+
+	var tx_cat_1=[];
+	{{#features}}
+		tx_cat_1.push('{{tx_cat_1}}');
+	{{/features}}	
+
+	var tx_cat_2=[];
+	{{#features}}
+		tx_cat_2.push('{{tx_cat_2}}');
+	{{/features}}	
+
+	var tx_cat_3=[];
+	{{#features}}
+		tx_cat_3.push('{{tx_cat_3}}');
+	{{/features}}	
+
+	var tx_cat_4=[];
+	{{#features}}
+		tx_cat_4.push('{{tx_cat_4}}');
+	{{/features}}	
+
+	var tx_cat_5=[];
+	{{#features}}
+		tx_cat_5.push('{{tx_cat_5}}');
+	{{/features}}	
+
+	var tx_cat_6=[];
+	{{#features}}
+		tx_cat_6.push('{{tx_cat_6}}');
+	{{/features}}	
+
+	var tx_cat_7=[];
+	{{#features}}
+		tx_cat_7.push('{{tx_cat_7}}');
+	{{/features}}	
+
+	var tx_cat_8=[];
+	{{#features}}
+		tx_cat_8.push('{{tx_cat_8}}');
+	{{/features}}	
+
+	var indicateurLog = {};
+
+	indicateurLog.getData = function() {
+		var data = {ChartLog: {labels:["1", "2","3","4","5","6","7","8" ], data: {datasets: [[tx_cat_1,tx_cat_2,tx_cat_3,tx_cat_4,tx_cat_5,tx_cat_6,tx_cat_7,tx_cat_8]]}}};
+		indicateurLog.drawChart(data);
+	};
+
+	
+	indicateurLog.drawChart = function (data) {
+			var ctx1 = document.getElementById("ChartLog");
+			var maxscale = Math.max.apply(this, data.ChartLog.data.datasets[0]) / 5;
+			maxscale = Math.trunc(maxscale) * 5;
+			ctx1.getContext("2d").canvas.width = 100;
+			ctx1.getContext("2d").canvas.height = 55;
+			var ChartLog = new Chart(ctx1, {
+			type: 'doughnut',
+			data: {
+				labels: data.ChartLog.labels,
+				datasets: [{
+							label: "Part selon le type",
+							backgroundColor: [
+								"#114015",
+								"#509727",
+								"#76A737",
+								"#9DB848",
+								"#C0C757",
+								"#CBAD56",
+								"#DC8454",
+								"#8C1812",
+
+							],
+							borderWidth: 3,
+							borderSkipped:'left',
+							data: data.ChartLog.data.datasets[0]
+							}]
+			},
+			  options: {
+				legend: {
+					position: 'right',
+				},
+				tooltips: {					
+					titleFontFamily:"roboto_bold",
+					titleFontSize:13,
+					bodyFontFamily:"roboto_regular",
+					backgroundColor:"rgba(36, 36, 36, 0.85)",
+					callbacks: {
+						label: function(tooltipItem, data) {
+							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(2).toLocaleString() + "%";
+
+						}
+					}
+		        }
+			}
+		});  
+	};
+	
+
+	
+	
+	 if  (typeof Chart === 'function') {
+            indicateurLog.getData();
+			
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js', function() {
+				indicateurLog.getData();
+            });
+	}
+
+
+</script>

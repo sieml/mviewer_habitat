@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <application 
+		title="Observatoire de l'habitat Anjou Bleu Communauté" 
+		logo="./apps/img/logo_abc.png" 
+		help="./apps/mviewer_help_obs_habitat.html" 
+		showhelp="true"
+		exportpng="true" 
+		measuretools="true" 
+		style="css/themes/abc.css"
+	/>
+	<mapoptions 
+		zoom="11" 
+		center=" -102931,6055625" 
+		projection="EPSG:3857" 
+		maxzoom="19"
+	/>  
+	<baselayers style="gallery">   
+		<baselayer  
+			type="OSM" 
+			id="positron" 
+			label="Plan clair" 
+			title="CartoDb" 
+			thumbgallery="img/basemap/positron.png" 
+			url="https://{a-c}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" 
+			maxzoom="20" 
+			visible="true" 
+			attribution="Map tiles by  &lt;a href='https://cartodb.com/attributions'>CartoDb &lt;/a>, under  &lt;a href='https://creativecommons.org/licenses/by/3.0/'>CC BY 3.0 &lt;/a>" 
+		/>
+	</baselayers>
+	<extensions>
+     <extension type="component" id="layerfilter" path="demo/addons"/>
+     <extension type="component" id="habitat_commentaire" path="apps/customcontrols"/>
+    </extensions>
+
+    <proxy url=""/>
+    <themes mini="false">	
+
+		<theme name="Découpage administratif" collapsed="true" id="admin" icon="fas fa-globe">
+				<layer 	id="ign:geo_masque_territoire" 
+			            index="1" 
+						name="Masque" 
+						opacity="0.4" 
+						visible="true"
+						exclusive="false"
+						expanded="false"
+						tiled="true"
+						searchable="false"
+						queryable="false"
+						filter="insee = 'm_244900809' "
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : IGN BD TOPO | CC des Vallées du Haut Anjou" 
+				>
+				</layer>		    
+				<layer 	id="obs_habitat:geo_v_commune_abc" 
+				        index="3"
+						name="Communes" 
+						visible="true"
+						expanded="false"
+						exclusive="false"
+						tiled="true" 
+						searchable="false"
+						queryable="false"
+						infopanel="bottom-panel"
+						infoformat="text/html" featurecount="5"
+						opacity="0.9" 
+						showintoc="true"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : IGN BD TOPO" 
+				>
+				</layer>
+				<layer 	id="obs_habitat:geo_v_commune_deleguee_abc" 
+						name="Communes associées ou déléguées" 
+						index="4"
+						visible="true"
+						expanded="false"
+						tiled="true" 
+						searchable="false"
+						queryable="false"
+						exclusive="false"
+						infoformat="text/html" featurecount="5"
+						opacity="0.9" 
+						showintoc="true"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : IGN BD TOPO" 
+				>
+				</layer>
+				<layer 	id="obs_habitat:geo_v_epci_abc" 
+						name="EPCI" 
+						index="2"
+						visible="true"
+						expanded="false"
+						tiled="true" 
+						searchable="false"
+						queryable="false"
+						infoformat="text/html" featurecount="5"
+						opacity="0.9" 
+						exclusive="false"
+						showintoc="true"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : IGN BD TOPO" 
+				>
+				</layer>
+				<layer 	id="obs_habitat:geo_enveloppe_urbaine" 
+						name="Enveloppes urbaines" 
+						index="2"
+						visible="true"
+						expanded="false"
+						tiled="true" 
+						searchable="false"
+						queryable="false"
+						infoformat="text/html" featurecount="5"
+						opacity="0.9" 
+						exclusive="false"
+						showintoc="true"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : IGN BD TOPO" 
+				>
+				</layer>	
+				<layer 	id="obs_habitat:geo_vm_lotissement" 
+						name="Lotissements" 
+						index="2"
+						visible="true"
+						expanded="false"
+						tiled="true" 
+						searchable="false"
+						queryable="false"
+						infoformat="text/html" featurecount="5"
+						opacity="0.9" 
+						exclusive="false"
+						showintoc="true"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : IGN BD TOPO" 
+				>
+				</layer>	
+
+		</theme>    
+    
+		<theme name="Données socio-démographiques" collapsed="false" id="donnees_sociodemographiques" icon="fas fa-users">
+			<group name="Evolution et structure de la population" id="grp1">
+
+
+				<layer 	id="obs_habitat:geo_vm_insee_profil_population" 
+						name="Population municipale" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						secure="global"
+                  		index="5" 
+                  		visible="true" 
+						expanded="true"
+						authentification="true"
+						tiled="false" 
+						opacity="0.7" 
+						searchable="false"
+						queryable="true"
+				        exclusive="true"		
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021" timemin="2010" timemax="2021"
+                        style="Indicateurs socio-démographiques : Population municipale,Indicateurs socio-démographiques : Densité de population,Indicateurs socio-démographiques : indice de vieillissement"
+                        styletitle="Population municipale"
+                        stylesalias="Population municipale,Densité de population,Indice de vieillissement"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE (RP)" 
+						
+				>
+				<template url="./apps/template/insee_profil_population_abc.mst"></template>
+				</layer>
+				<layer 	id="obs_habitat:geo_vm_insee_evolution_population" 
+						name="Evolution de la population municipale" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021" timemin="2010" timemax="2021"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE (RP)" 
+				>
+				<template url="./apps/template/insee_evolution_population_municipale_abc.mst"></template>
+				</layer>
+
+
+				<layer 	id="obs_habitat:geo_vm_insee_menages" 
+						name="Taille moyenne des ménages" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021" timemin="2010" timemax="2021"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE (RP)" 
+						
+				>
+				<template url="./apps/template/insee_menages_abc.mst"></template>
+				</layer>	
+			</group>
+			<group name="Revenus / niveau de vie" id="grp2">
+				<layer 	id="obs_habitat:geo_vm_insee_med_niveau_de_vie" 
+						name="Médiane du niveau de vie" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE (RP)" 
+						
+				>
+				<template url="./apps/template/insee_niveau_de_vie_abc.mst"></template>
+				</layer>				
+				
+				<layer 	id="obs_habitat:geo_vm_insee_emploi" 
+						name="Nombre d'emplois au lieu de travail" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE (RP)" 
+						
+				>
+				<template url="./apps/template/insee_emploi_abc.mst"></template>
+				</layer>	
+
+				<layer 	id="insee:vm_geo_filosofi_log_tp_nivvie " 
+						name="Revenu et taux de pauvreté par statut d'occupation" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timevalues="2021"
+                        style="Filosofi : Revenu médian des locataires,Filosofi : Revenu médian des propriétaires,Filosofi : Taux de pauvreté des locataires,Filosofi : Taux de pauvreté des propriétaires"
+                        styletitle="Statut d'occupation"
+                        stylesalias="Revenu médian des locataires,Revenu médian des propriétaires,Taux de pauvreté des locataires,Taux de pauvreté des propriétaires"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE (Filosofi)" 
+						
+				>
+				<template url="./apps/template/filosofi_nivvie_statut_occupation_abc.mst"></template>
+				</layer>
+
+
+			</group>								
+		</theme>
+		
+		<theme name="Parc social" collapsed="false" id="parc_social" icon="fas fa-handshake">
+			<group name="Etat des lieux" id="grp1">
+ 
+
+				<layer 	id="obs_habitat:geo_vm_rpls_abc" 
+						name="Nombre de logements sociaux" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune déléguée,Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2024"
+                        style="RPLS : Nombre de logements sociaux,RPLS : Taux de logement sociaux"
+                        styletitle="Analyses"
+                        stylesalias="Nombre de logements sociaux, Taux de logements sociaux"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : RPLS" 
+						
+				>
+				<template url="./apps/template/_rpls_nb_logements_sociaux.mst"></template>
+				</layer>   
+				<layer id="obs_habitat:geo_vm_rpls_row" 
+					name="Localisation des logements sociaux" 
+					visible="false" 
+					tiled="false" 
+					searchable="false" 
+					queryable="true" 
+					expanded="true" 
+					infoformat="application/vnd.ogc.gml" 
+					featurecount="20" 
+					customcontrol="true" 
+					customcontrolpath="apps/customcontrols/filtres_rpls" 
+					timefilter="true" timecontrol="slider" timemin="2020" timemax="2024"
+                    style="RPLS : Localisation des logements - Bailleur,RPLS : Localisation des logements - Type,RPLS : Localisation des logements - âge du bâti,RPLS : Localisation des logements"
+                    styletitle="Analyses"
+                    stylesalias="Bailleur,Type du logement,Age du bâti,Tous les logements"					
+					exclusive="true" 
+					url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+					attribution="Source: RPLS" >
+				<ccfilters logicaloperator="and" nofilterlabel="Toutes">
+				<filter label="Bailleur" field="nom_bailleur" values="Immobilière Podeliha,OPH de Maine-et-Loire,SA HLM Logi-Ouest" multiselection="true"/>
+				<filter label="Nombre de pièces" field="nbpiece" values="1,2,3,4,5,6" multiselection="true"/>
+				<filter label="Année de construction" field="construct_cat" values="Avant 1950,1950-1970,1970-1990,1990-2010,Après 2010" multiselection="true"/>
+				</ccfilters>
+				<template url=""/>
+				</layer>			
+				<layer 	id="obs_habitat:geo_vm_rpls_abc" 
+						name="Typologie des logements sociaux" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune déléguée,Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2024"
+                        style="RPLS : Taux de T1 - T2,RPLS : Taux de T3,RPLS : Taux de T4 et plus,RPLS : Taux de logements collectifs "
+                        styletitle="Analyses"
+                        stylesalias="Part de T1 - T2,Part de T3,Part de T4 et plus,Taux de logements collectifs"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : RPLS" 
+						
+				>
+				<template url="./apps/template/_rpls_type_logements_sociaux.mst"></template>
+				</layer> 
+				<layer 	id="obs_habitat:geo_vm_rpls_abc" 
+						name="Vacance du parc social" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune déléguée,Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						style="RPLS : Taux de vacance"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2021" timemax="2024"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : RPLS" 
+						
+				>
+				<template url="./apps/template/_rpls_tx_vacance.mst"></template>
+				</layer>				
+				<layer 	id="obs_habitat:geo_vm_rpls_abc" 
+						name="Financement des logements sociaux" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune déléguée,Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2024"
+                        style="RPLS : Nombre de logements sociaux financés par PLUS,RPLS : Nombre de logements sociaux financés par PLAI"
+                        styletitle="Analyses"
+                        stylesalias="Nombre de PLUS,Nombre de PLAI"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : RPLS" 
+						
+				>
+				<template url="./apps/template/_rpls_financement_logements_sociaux.mst"></template>
+				</layer>
+				<layer 	id="obs_habitat:geo_vm_rpls_sortis_abc" 
+						name="Nombre de logements sortis du parc social" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2021" timemax="2024"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : RPLS" 
+						
+				>
+				<template url="./apps/template/_rpls_logements_sortis.mst"></template>
+				</layer>	
+
+			</group>
+			<group name="Demande et attribution de logements sociaux" id="grp2">
+
+				<layer 	id="obs_habitat:geo_vm_creha_ouest_demandes_en_cours_abc" 
+						name="Demandes de logements sociaux" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"			
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2022" timemax="2026"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : CREHA OUEST (Demandes de logements sociaux au 1er janvier - choix n°1)" 
+						
+				>
+				<template url="./apps/template/_creha_ouest_demandes_logements_sociaux.mst"></template>
+				</layer>  
+
+				<layer 	id="obs_habitat:geo_vm_creha_ouest_demandes_satisfaites_abc" 
+						name="Pression locative"
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2021" timemax="2025"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : CREHA OUEST (Demandes et attributions de logements sociaux au 1er janvier)" 
+						
+				>
+				<template url="./apps/template/_creha_ouest_tx_demandes_satisfaites.mst"></template>
+				</layer>  
+				<layer 	id="obs_habitat:geo_v_guichet_accueil" 
+						name="Guichets d'accueil" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="false"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : ABC" 
+				>
+				</layer> 
+				<layer 	id="obs_habitat:geo_v_guichet_enregistrement" 
+						name="Guichets d'enregistrement des demandes de logements sociaux" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="false"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : ABC" 	
+				>
+				</layer>   
+
+
+
+			</group>	
+
+
+
+
+			<group name="Constructions de nouveaux logements" id="grp4">
+				<layer 	id="obs_habitat:geo_vm_sitadel_abc" 
+						name="Nombre de logements locatifs sociaux commencés" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+                    	style="Logement : Nombre de logements locatifs sociaux commencés"						
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2022" timemax="2024"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : SITADEL (sur la base des DOC)" 
+						
+				>
+				<template url="./apps/template/_nombre_lls_commence.mst"></template>
+				</layer>  
+
+
+			</group>	
+
+
+
+
+			<group name="Hébergements d'urgence" id="grp5">
+			</group>					
+		</theme>
+
+		<theme name="Parc privé" collapsed="false" id="parc_prive" icon="fas fa-lock">
+			<layer 	id="insee:vm_geo_rp_logement_princ_parc_prive" 
+					name="Part de logements locatifs privés dans les résidences principales" 
+					attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true" 
+					visible="false" 
+					expanded="true"
+					index="5" 
+					tiled="false" 
+					searchable="false"
+					opacity="0.7"
+					queryable="true"
+					exclusive="true"
+					infopanel="bottom-panel"			
+					infoformat="application/vnd.ogc.gml" featurecount="5"
+					timefilter="true" timecontrol="slider" timemin="2022" timemax="2022"
+					url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+					attribution="Source : INSEE RP LOGEMENT" 
+					
+			>
+			<template url="./apps/template/_insee_rp_logement_princ_parc_prive_abc.mst"></template>
+			</layer>
+
+			<layer 	id="obs_habitat:geo_vm_signal_logement" 
+					name="Nombre de signalements par an" 
+					attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true" 
+					visible="false" 
+					expanded="true"
+					index="5" 
+					tiled="false" 
+					searchable="false"
+					opacity="0.7"
+					queryable="true"
+					exclusive="true"
+					infopanel="bottom-panel"			
+					infoformat="application/vnd.ogc.gml" featurecount="5"
+					timefilter="true" timecontrol="slider" timemin="2024" timemax="2026"
+					url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+					attribution="Source : Signal Logement" 
+					
+			>
+			<template url="./apps/template/signal_logement_nb_signalements_abc.mst"></template>
+			</layer>
+
+
+				<layer 	id="obs_habitat:geo_vm_lovac" 
+						name="Taux de logements vacants" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						filter="code_siren_des_epci = '0244900809' "
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2023"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : Lovac" 
+				>
+				<template url="./apps/template/lovac_tx_lovac_abc.mst"></template>
+				</layer>				
+			<layer 	id="obs_habitat:geo_vm_dgfip_cat_fisc" 
+					name="Catégories fiscales des habitations (Classes 7 et 8)" 
+					visible="false" 
+					expanded="true"
+					index="5" 
+					tiled="false" 
+					searchable="false"
+					opacity="0.7"
+					queryable="true"
+					exclusive="true"
+					infopanel="bottom-panel"			
+					infoformat="application/vnd.ogc.gml" featurecount="5"
+					timefilter="true" timecontrol="slider" timemin="2025" timemax="2025"
+					url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+					attribution="Source : DGFiP" 
+					
+			>
+			<template url="./apps/template/_dgfip_cat_fisc_abc.mst"></template>
+			</layer>
+				<layer 	id="anahab:geo_niv_etat_5 " 
+						name="Localisation des logements dégradés" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						filter="insee IN ('049331', '049248', '049008', '049010', '049036', '049038', '049054', '049056', '049061', '049089', '049178')"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : DGFiP" 
+				>
+				 
+				</layer>
+
+
+		</theme>
+
+
+		<theme name="Marché immobilier" collapsed="false" id="marche_immobilier" icon="fas fa-lock">
+			<group name="Construction neuve" id="grp1">
+
+				<layer 	id="obs_habitat:geo_vm_sitadel_abc" 
+						name="Nombre de logements commencés" 
+						visible="false" 
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+                        style="Logement : Nombre de logements dans nouvelle construction,Logement : Nombre de logements commencés,Logement : Nombre de logements individuels commencés,Logement : Nombre de logements collectifs commencés,Logement : Nombre de logements dans construction ancienne"
+                        styletitle="Type de logement"
+                        stylesalias="Nombre de logements dans nouvelle construction,Tous types de logements,Logements individuels,Logements collectifs,Nombre de logements dans construction ancienne"					
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2024"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : SITADEL" 
+						
+				>
+				<template url="./apps/template/_nombre_logement_commence.mst"></template>
+
+				</layer>
+
+				<layer 	id="obs_habitat:geo_v_sitadel_ind_construction" 
+						name="Indice de construction" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						filter="codes_siren_des_epci = '244900809' "
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2023"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : SITADEL | Traitement : Siéml" 
+						
+				>
+				<template url="./apps/template/_indice_construction.mst"></template>
+				</layer>
+
+				<layer 	id="obs_habitat:geo_vm_dvf" 
+						name="Prix moyen des transactions de biens immobiliers" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune déléguée,Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+                        style="DVF : Prix moyen d'une maison, DVF - Prix moyen d'un appartement"
+                        styletitle="Type de logement"
+                        stylesalias="Maisons,Appartements"						
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2016" timemax="2024"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : DVF+" 
+				>
+				<template url="./apps/template/_dvf_prix_moyen.mst"></template>
+				</layer> 
+				<!--
+				<layer 	id="obs_habitat:geo_vm_dvf_tab" 
+						name="Prix moyen des terrains à bâtir" 
+						attributefilter="true" attributefield="echelle" attributevalues="Lotissement,Commune déléguée,Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+                        style="DVF : Prix moyen d'un terrain à bâtir"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2016" timemax="2024"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : DVF+" 
+				>
+				<template url="./apps/template/_dvf_prix_moyen_tab.mst"></template>
+				</layer> 
+
+				-->
+
+			</group>
+			<group name="Construction dans l'existant" id="grp2">
+				<layer 	id="obs_habitat:geo_vm_sitadel_abc" 
+						name="Nombre de logements commencés" 
+						visible="false" 
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+                        style="Logement : Nombre de logements dans nouvelle construction,Logement : Nombre de logements commencés,Logement : Nombre de logements individuels commencés,Logement : Nombre de logements collectifs commencés,Logement : Nombre de logements dans construction ancienne"
+                        styletitle="Type de logement"
+                        stylesalias="Nombre de logements dans nouvelle construction,Tous types de logements,Logements individuels,Logements collectifs,Nombre de logements l'existant"					
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2024"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : SITADEL" 
+						
+				>
+				<template url="./apps/template/_nombre_logement_commence.mst"></template>
+				</layer>
+
+			</group>
+
+			<group name="Marché locatif" id="grp3">
+
+				<layer 	id="obs_habitat:geo_v_carte_des_loyers" 
+						name="Prix moyen au m² des locations"
+						attributefilter="true" attributefield="filtre" attributevalues="Maisons,Appartements 1/2 pièces,Appartements 3 pièces" attributelabel="Type de bien" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2024" timemax="2024"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : Estimations ANIL, à partir des données du Groupe SeLoger et de leboncoin" 
+						
+				>
+				</layer>
+
+			</group>
+
+
+
+
+		</theme>
+
+		
+		<theme name="Logement des jeunes" collapsed="false" id="logement_des_jeunes" icon="fas fa-child">
+		</theme>
+		<theme name="Gens du voyage" collapsed="false" id="logement_des_jeunes" icon="fas fa-route">
+		</theme>
+
+
+
+
+
+
+
+		<!--
+
+
+		<theme name="Logement" collapsed="true" id="lls" icon="fas fa-home">
+		    <group name="Profil du parc de logements" id="grp1">
+
+				<layer 	id="obs_habitat:geo_vm_insee_nb_logements" 
+						name="Nombre de logements" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE RP" 
+				>
+				<template url="./apps/template/insee_nb_logements_abc.mst"></template>
+				</layer>
+				<layer 	id="obs_habitat:geo_vm_insee_nb_residences_principales" 
+						name="Nombre de résidences principales" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE RP" 
+				>
+				<template url="./apps/template/insee_nb_residences_principales_abc.mst"></template>
+				</layer>
+				<layer 	id="obs_habitat:geo_vm_lovac" 
+						name="Taux de logements vacants" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						filter="codes_siren_des_epci = '0244900809' "
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2020"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : Lovac" 
+				>
+				<template url="./apps/template/lovac_tx_lovac_abc.mst"></template>
+				</layer>
+
+		    </group >	
+
+
+		    <group name="Production de logements" id="grp2">
+
+				
+		    </group>
+
+
+		</theme>
+
+		<theme>
+            <group name="Marché immobilier" id="grp3">
+				<layer 	id="obs_habitat:geo_vm_dvf_vente_logt_map" 
+						name="Nombre de transactions" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune déléguée,Lotissement,Commune" attributelabel="Échelle" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2016" timemax="2024"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : DVF+" 
+						
+				>
+				<template url="./apps/template/_dvf_nb_transactions.mst"></template>
+				</layer>  
+				
+				<layer 	id="obs_habitat:geo_v_dvf_bati_maison_appartement_med_prix_mai_abc" 
+						name="Prix médian d'une maison"
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,Commune déléguée" attributelabel="Échelle" attributefilterenabled="true"
+						visible="false" 
+					    expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						filter="codes_siren_des_epci = '244900809' "
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2016" timemax="2023"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : DVF+" 
+						
+				>
+				<template url="./apps/template/_dvf_med_prix_maison.mst"></template>
+				</layer> 				
+	
+
+            </group>
+
+		</theme>
+		-->
+    </themes>
+
+
+
+
+
+
+
+
+
+    <styles>
+        <selectionstyle>
+            <point radius="12" fillcolor="26, 188, 156" opacity="0" strokecolor="26, 188, 156" strokewidth="4"/>
+            <line opacity="0.6" strokecolor="26, 188, 156" strokewidth="8"/>
+            <polygon fillcolor="26, 188, 156" opacity="0" strokecolor="26, 188, 156" strokewidth="4"/>
+        </selectionstyle>
+        <subselectionstyle>
+            <point radius="12" fillcolor="175, 122, 197" opacity="0.5" strokecolor="175, 122, 197" strokewidth="4"/>
+            <line opacity="0.8" strokecolor="175, 122, 197" strokewidth="8"/>
+            <polygon fillcolor="175, 122, 197" opacity="0.2" strokecolor="175, 122, 197" strokewidth="6"/>
+        </subselectionstyle>
+    </styles>
+</config>

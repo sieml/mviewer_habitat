@@ -1,0 +1,269 @@
+{{#features}}
+<div id="CarouselMenages" class="carousel slide" data-ride="carousel" data-interval="false">
+	
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+
+					
+					<div class="col-xs-2" style="padding-right:0px; margin-top:3%;">
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/menage.png" style="width:60px; margin-top:50%; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{nb_pers_men}}
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>Personnes par ménage</p>
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>{{nb_pers_men_comp}} pour {{nom_officiel_comp}}</p>
+								</div>									
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/population2.png" style="width:60px; margin-top:50%; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left; font-size:24px;">
+									{{nb_men}}
+								</div>
+								<div class="title-number" style="text-align:left; ">
+									<p>Nombre de ménages</p>
+								</div>	
+								<div class="title-number" style="text-align:left; ">
+								    <p>{{nb_men_comp}} pour {{nom_officiel_comp}}</p>
+								</div>									
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="col-xs-4" >
+						<canvas id="ChartTypoMen1"></canvas>
+						<div style="margin-top:10px; text-align:center">
+							<p><b>Profil des familles</b></p>
+							<p><i>{{nom_officiel}} - {{serie}}</i></p>
+						</div> 
+					</div>
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{serie}} - Source : INSEE</i></p>
+						</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>			
+{{/features}}
+
+<style>
+
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+	//Récupération des attributs
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}	
+	var nb_men=[];
+	{{#features}}
+		nb_men.push('{{nb_men}}');
+	{{/features}}
+	
+	var nb_pers_men=[];
+	{{#features}}
+		nb_pers_men.push('{{nb_pers_men}}');
+	{{/features}}
+	
+	var tx_fam_monop=[];
+	{{#features}}
+		tx_fam_monop.push('{{tx_fam_monop}}');
+	{{/features}}
+	
+	var tx_men_1_pers=[];
+	{{#features}}
+		tx_men_1_pers.push('{{tx_men_1_pers}}');
+	{{/features}}
+	
+	var tx_fam_s_enf=[];
+	{{#features}}
+		tx_fam_s_enf.push('{{tx_fam_s_enf}}');
+	{{/features}}
+	
+	var tx_fam_1_enf=[];
+	{{#features}}
+		tx_fam_1_enf.push('{{tx_fam_1_enf}}');
+	{{/features}}	
+	
+	var tx_fam_2_enf=[];
+	{{#features}}
+		tx_fam_2_enf.push('{{tx_fam_2_enf}}');
+	{{/features}}	
+	
+	var tx_fam_3_enf=[];
+	{{#features}}
+		tx_fam_3_enf.push('{{tx_fam_3_enf}}');
+	{{/features}}	
+
+
+	var nb_pers_men_comp=[];
+	{{#features}}
+		nb_pers_men_comp.push('{{nb_pers_men_comp}}');
+	{{/features}}
+	
+	var tx_fam_monop_comp=[];
+	{{#features}}
+		tx_fam_monop_comp.push('{{tx_fam_monop_comp}}');
+	{{/features}}
+	
+	var tx_men_1_pers_comp=[];
+	{{#features}}
+		tx_men_1_pers_comp.push('{{tx_men_1_pers_comp}}');
+	{{/features}}
+	
+	var tx_fam_s_enf_comp=[];
+	{{#features}}
+		tx_fam_s_enf_comp.push('{{tx_fam_s_enf_comp}}');
+	{{/features}}
+	
+	var tx_fam_1_enf_comp=[];
+	{{#features}}
+		tx_fam_1_enf_comp.push('{{tx_fam_1_enf_comp}}');
+	{{/features}}	
+	
+	var tx_fam_2_enf_comp=[];
+	{{#features}}
+		tx_fam_2_enf_comp.push('{{tx_fam_2_enf_comp}}');
+	{{/features}}	
+	
+	var tx_fam_3_enf_comp=[];
+	{{#features}}
+		tx_fam_3_enf_comp.push('{{tx_fam_3_enf_comp}}');
+	{{/features}}	
+	var indicateurTypMen_a = {};
+	indicateurTypMen_a.getData = function() {
+		var data = {ChartTypoMen1: {labels:[nom_officiel,nom_officiel_comp ], data: {datasets: [[tx_fam_s_enf[0],tx_fam_s_enf_comp[0]],[tx_fam_1_enf[0],tx_fam_1_enf_comp[0]],[tx_fam_2_enf[0],tx_fam_2_enf_comp[0]],[tx_fam_3_enf[0],tx_fam_3_enf_comp[0]]]}}};
+		indicateurTypMen_a.drawChart(data);
+	};
+
+	
+	indicateurTypMen_a.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartTypoMen1");
+			var maxscale = Math.max.apply(this, data.ChartTypoMen1.data.datasets[0]) / 5;
+			maxscale = 100;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartTypoMen1 = new Chart(ctx2, {
+			type: 'bar',
+			data: {
+				labels: data.ChartTypoMen1.labels,
+				datasets: [
+				    {
+						label: 'Familles sans enfant',
+						backgroundColor: "#005EA8",
+						borderColor: "#005EA8",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[0]
+			    	},
+				    {
+						label: 'Familles avec 1 enfant',
+						backgroundColor: "#7EA5D0",
+						borderColor: "#7EA5D0",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[1]
+			    	},
+				    {
+						label: 'Familles avec 2 enfants',
+						backgroundColor: "#61B850",
+						borderColor: "#61B850",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[2]
+			    	},
+				    {
+						label: 'Familles avec 3 enfants ou plus',
+						backgroundColor: "#c7edc0",
+						borderColor: "#c7edc0",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[3]
+			    	}
+			]
+			},
+			 options: {
+			    indexAxis: 'y',
+				legend: {
+				      labels: {
+				        font: {
+				          size: 10 // Taille de police réduite
+				        },
+				        boxWidth: 10, // Réduit la taille des carrés de légende
+				        padding: 5 // Moins d'espace autour
+				      }				
+				},
+				
+                scales: {
+                     yAxes: [{
+                        stacked: true
+                     }],
+                     xAxes: [{
+						      stacked: true,
+						      ticks: {
+						        max: 100
+						      }
+						    }]
+                }
+			}
+		});  
+	};
+	
+
+	
+	
+	
+	
+	
+	 if  (typeof Chart === 'function') {
+            indicateurTypMen_a.getData();
+
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js', function() {
+				indicateurTypMen_a.getData();
+            });
+	}
+	

@@ -1,0 +1,151 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+
+    				<div class="col-xs-4" >
+    					<canvas id="ChartVacance"></canvas>
+    					<div style="margin-top:10px; text-align:center">
+    					    <!--<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Financement des logements sociaux</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{millesime}}</i></br></p></br>-->
+    					</div> 
+    				</div>
+
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{millesime}} - Source : RPLS</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+{{/features}}
+
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		color: #2F4455;
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			color: #354753;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			color: #518299;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+        const chart_data = {{{chart_vacance}}} ;
+
+	{{/features}}	
+	
+
+
+
+	var chartInstance = null;
+	  var indicateurVacance = {};
+	  indicateurVacance.drawChart = function (data) {
+	    var ctx3 = document.getElementById("ChartVacance");
+
+	    if (!ctx3 || !data) {
+	      console.warn("Canvas ou données manquantes");
+	      return;
+	    }
+
+
+	  data.datasets.forEach(dataset => {
+	    dataset.data = dataset.data.map(val => val === 0 ? null : val);
+	  });
+	    
+	    if (chartInstance) {
+	        chartInstance.destroy();
+	        chartInstance = null; // Détruire l'ancien graphique avant de recréer
+	      }
+
+
+	     chartInstance = new Chart(ctx3, {
+	      type: 'line',
+	      data: data,
+	      options: {
+	        responsive: true,
+	        plugins: {
+	          title: {
+	            display: true,
+	            text: 'Evolution du taux de vacance du parc social'
+	          }
+	        },
+	      }
+	    });
+	  };
+
+
+
+
+	if  (typeof Chart === 'function') {
+			indicateurVacance.drawChart(chart_data)
+
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js', function() {
+				indicateurVacance.drawChart(chart_data)
+            });
+	}	
+	
+</script>

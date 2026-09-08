@@ -1,0 +1,308 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">			
+
+
+					<div class="col-xs-2" style="padding-right:0px; padding-left:5px; margin-top:3%;">
+						<img class="img-responsive" src="./apps/template/img/pensee.png" style="max-width:50%;margin: 0 auto;">
+						<div class="number" style="margin-top:5%;text-align:center;">{{nb_menages}}</div>
+						<div class="title-number" style="text-align:center;">
+							<p>Nombre de demandes de logements sociaux au 1er janvier (choix n°1)</p>
+						</div>
+
+
+					</div>
+
+
+					<div class="col-xs-4" style="height: 225px; position: relative;">
+						<canvas id="ChartProfilMenages" style="height: 100%; width: 100%;" ></canvas>
+						<div style="margin-top:10px; text-align:center">
+						    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Profil des ménages</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{millesime}}</i></br></p></br>						    
+						</div> 
+					</div>
+
+					<div class="col-xs-4" style="height: 250px; position: relative;">
+						<canvas id="ChartEvolMenages" style="height: 100%; width: 100%;" ></canvas>
+						<div style="margin-top:10px; text-align:center">
+						    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Profil des ménages</b></p></br>
+    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}</i></br></p></br>						    
+						</div> 
+					</div>
+
+				</div>
+				<div class="row">	
+					<div class="title-number" style="text-align:left; padding-left:30px;">
+							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{millesime}} - Source : CREHA OUEST</i></p>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+{{/features}}
+
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+
+	
+	var nb_pers_seule=[];
+	{{#features}}
+		nb_pers_seule.push('{{nb_pers_seule}}');
+	{{/features}}	
+
+	var nb_pers_seule_comp=[];
+	{{#features}}
+		nb_pers_seule_comp.push('{{nb_pers_seule_comp}}');
+	{{/features}}	
+
+	var nb_fam_monop=[];
+	{{#features}}
+		nb_fam_monop.push('{{nb_fam_monop}}');
+	{{/features}}	
+
+	var nb_fam_monop_comp=[];
+	{{#features}}
+		nb_fam_monop_comp.push('{{nb_fam_monop_comp}}');
+	{{/features}}	
+
+	var nb_couple_av_enf=[];
+	{{#features}}
+		nb_couple_av_enf.push('{{nb_couple_av_enf}}');
+	{{/features}}	
+
+	var nb_couple_av_enf_comp=[];
+	{{#features}}
+		nb_couple_av_enf_comp.push('{{nb_couple_av_enf_comp}}');
+	{{/features}}	
+
+	var nb_couple_ss_enf=[];
+	{{#features}}
+		nb_couple_ss_enf.push('{{nb_couple_ss_enf}}');
+	{{/features}}	
+
+	var nb_couple_ss_enf_comp=[];
+	{{#features}}
+		nb_couple_ss_enf_comp.push('{{nb_couple_ss_enf_comp}}');
+	{{/features}}	
+
+	var nb_autre_sit_fam=[];
+	{{#features}}
+		nb_autre_sit_fam.push('{{nb_autre_sit_fam}}');
+	{{/features}}	
+
+	var nb_autre_sit_fam_comp=[];
+	{{#features}}
+		nb_autre_sit_fam_comp.push('{{nb_autre_sit_fam_comp}}');
+	{{/features}}	
+
+
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}	
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}	
+
+
+	var tx_demandes_comp=[];
+	{{#features}}
+		tx_demandes_comp.push('{{tx_demandes_comp}}');
+	{{/features}}	
+
+
+	
+	{{#features}}
+		const chart_data = {{{chart_data}}};
+	{{/features}}	
+	console.log(chart_data);
+
+	var indicateurTypologieDemandes = {};
+
+	indicateurTypologieDemandes.getData = function() {
+		var data =  {
+		  labels: ['Personne seule', 'Famille monoparentale', 'Couple sans enfant', 'Couple avec enfant', 'Autres',
+		           'Personne seule (EPCI)', 'Famille monoparentale (EPCI)', 'Couple sans enfant (EPCI)', 'Couple avec enfant (EPCI)', 'Autres (EPCI)'],
+		  datasets: [
+		    {
+		      backgroundColor: ['#005EA8', '#0089A8', '#1BB7E3', '#7DCBE3', '#7E969E'],
+		      data: [nb_pers_seule, nb_fam_monop, nb_couple_ss_enf, nb_couple_av_enf, nb_autre_sit_fam]
+		    },
+		    {
+		      backgroundColor: ['#406E38', '#64BE53', '#93E381', '#CBE3C3', '#878F85'],
+		      data: [nb_pers_seule_comp, nb_fam_monop_comp, nb_couple_ss_enf_comp, nb_couple_av_enf_comp, nb_autre_sit_fam_comp]
+		    }
+		  ]
+		};
+		indicateurTypologieDemandes.drawChart(data);
+	};
+
+
+	indicateurTypologieDemandes.drawChart = function (data) {
+	    var ctx2 = document.getElementById("ChartProfilMenages");
+
+	    var ChartProfilDemandeurs = new Chart(ctx2, {
+		  type: 'pie',
+		  data: data,
+		  options: {
+		    responsive: true,
+		    maintainAspectRatio: false, // important !
+		    plugins: {
+		      legend: {
+		      	position:'right',
+		        labels: {
+		          generateLabels: function(chart) {
+		            const original = Chart.overrides.pie.plugins.legend.labels.generateLabels;
+		            const labelsOriginal = original.call(this, chart);
+		            let datasetColors = chart.data.datasets.map(d => d.backgroundColor).flat();
+		            
+		            labelsOriginal.forEach(label => {
+		              label.datasetIndex = Math.floor(label.index / (chart.data.datasets[0].data.length));
+		              label.hidden = !chart.isDatasetVisible(label.datasetIndex);
+		              label.fillStyle = datasetColors[label.index];
+		            });
+		            return labelsOriginal;
+		          }, 
+
+			      font: {
+			          size: 10 // Taille de police réduite
+			        },
+			        boxWidth: 10, // Réduit la taille des carrés de légende
+			        padding: 5 // Moins d'espace autour
+					          
+		        },
+		        onClick: function(_, legendItem, legend) {
+		          const ci = legend.chart;
+		          ci.getDatasetMeta(legendItem.datasetIndex).hidden = !ci.isDatasetVisible(legendItem.datasetIndex);
+		          ci.update();
+		        }
+		      },
+		      tooltip: {
+		        callbacks: {
+		          title: function(context) {
+		            const idx = context[0].datasetIndex;
+		            const dataIndex = context[0].dataIndex;
+		            const label = data.labels[idx * data.datasets[0].data.length + dataIndex];
+		            return label + ': ' + context[0].formattedValue;
+		          }
+		        }
+		      }
+		    }
+		  }
+		});
+	};
+
+
+	var indicateurEvolMenages = {};
+ 	indicateurEvolMenages.drawChart = function (data) {
+			var ctx3 = document.getElementById("ChartEvolMenages");
+			var ChartEvolMenages = new Chart(ctx3, {
+			   type: 'bar', // ou 'bar' si tu préfères un histogramme
+			    data: chart_data,
+				 options: {
+				    plugins: {
+				      title: {
+				        display: true,
+				        text: 'Evolution de la structure des ménages'
+				      },
+
+				    legend: {
+				      labels: {
+				        font: {
+				          size: 10 // Taille de police réduite
+				        },
+				        boxWidth: 10, // Réduit la taille des carrés de légende
+				        padding: 5 // Moins d'espace autour
+				      }
+				    }				      ,
+				    responsive: true,
+				    scales: {
+				      x: {
+				        stacked: true,
+				      },
+				      y: {
+				        stacked: true
+				      }
+				    }
+				  }
+				}
+			});
+	};
+
+
+	if  (typeof Chart === 'function') {
+			indicateurTypologieDemandes.getData();
+			indicateurEvolMenages.drawChart();
+
+    } else {
+            $.get('https://cdn.jsdelivr.net/npm/chart.js', function() {
+				indicateurTypologieDemandes.getData();
+				indicateurEvolMenages.drawChart();
+            });
+	}	
+</script>

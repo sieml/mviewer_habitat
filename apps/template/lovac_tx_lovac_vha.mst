@@ -1,0 +1,139 @@
+{{#features}}
+<div id="CarouselConfLog" class="carousel slide" data-ride="carousel" data-interval="false">
+
+	<div class="title-feature" style="padding-top:8px;">{{nom_officiel}}</div>
+	
+	<div class="carousel-inner" style="margin-top:-2%;">
+		<div class = "item active">
+			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
+				<div class="row">
+				
+					<div class="col-xs-2" style="padding-right:0px; ">
+						<div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/part.svg" style="width:60px; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left;font-size:24px;">
+									{{tx_lovac}} %
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>Taux de logements vacants</p>
+								</div>
+								<div class="title-number" style="text-align: left;">
+        							<p>{{tx_lovac_comp}} % pour {{nom_officiel_comp}}</p>
+								</div>									
+							</div>	
+						</div>
+                  <div class="row">
+							<div class="col-xs-2" style="padding-right:0px;">
+								<img src="./apps/template/img/part.svg" style="width:60px; " title="Cliquez pour agrandir cette image">
+							</div>
+							<div class="col-xs-8" style="padding-right:0px; margin-left:15%;margin-top:5%;">	
+								<div class="number" style="text-align:left;font-size:24px;">
+									{{nb_lovac}}
+								</div>
+								<div class="title-number" style="text-align:left;">
+									<p>Logements sociaux</p>
+									<p>({{nb_lovac_comp}} pour {{nom_officiel_comp}})</p>
+								</div>	
+							</div>
+						</div>
+					</div>				
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+{{/features}}
+
+<style>
+	<!-- body, html { -->
+		  <!-- margin:0px; -->
+		  <!-- position:relative; -->
+		  <!-- line-height: 1 !important; -->
+		  <!-- font-family:'Open Sans'; -->
+		  <!-- font-size:11px; -->
+		  <!-- text-align: center; -->
+		  <!-- color: #797979; -->
+		<!-- }  -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_black"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Black.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_bold"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Bold.ttf'); -->
+		<!-- } -->
+		<!-- @font-face { -->
+			<!-- font-family: "roboto_regular"; -->
+			<!-- src: url('fonts/Roboto/Roboto-Regular.ttf'); -->
+		<!-- } 		 -->
+	.title-feature {
+		font-family:"roboto_black";
+		font-size:23px;
+		text-align: left;
+		margin-bottom:3%;
+		line-height:1;			
+	}
+	<!-- .indicateurConfLog {			 -->
+		<!-- text-align: center; -->
+	<!-- } -->
+	<!-- .panel-graph { -->
+	    <!-- color: #3db39e; -->
+	    <!-- text-align: center; -->
+	<!-- } -->
+
+	.container_viz{
+			padding-left:0!important;
+			margin-left:0!important;
+			overflow: hidden;
+			margin-top: 1%;
+		}
+	.number{
+			font-family: "roboto_black";
+			font-size:35px;
+			/*margin-top: 5px;*/
+		}
+	.title-number{
+			font-family: "roboto_bold";
+			font-size:12px;
+			/*margin-top:0%;*/
+		}
+</style>
+
+<script>
+
+	
+	var tx_lovac_comp=[];
+	{{#features}}
+		tx_lovac_comp.push('{{tx_lovac_comp}}');
+	{{/features}}	
+	
+	var tx_lovac=[];
+	{{#features}}
+		tx_lovac.push('{{tx_lovac}}');
+	{{/features}}	
+	
+	var nb_lovac_comp=[];
+	{{#features}}
+		nb_lovac_comp.push('{{nb_lovac_comp}}');
+	{{/features}}	
+
+	var nb_lovac=[];
+	{{#features}}
+		nb_lovac.push('{{nb_lovac}}');
+	{{/features}}	
+	
+	var nom_officiel=[];
+	{{#features}}
+		nom_officiel.push('{{nom_officiel}}');
+	{{/features}}
+	var nom_officiel_comp=[];
+	{{#features}}
+		nom_officiel_comp.push('{{nom_officiel_comp}}');
+	{{/features}}	
+
+</script>
