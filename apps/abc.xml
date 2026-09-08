@@ -16,16 +16,14 @@
 		maxzoom="19"
 	/>  
 	<baselayers style="gallery">   
-		<baselayer  
-			type="OSM" 
-			id="positron" 
-			label="Plan clair" 
-			title="CartoDb" 
-			thumbgallery="img/basemap/positron.png" 
-			url="https://{a-c}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" 
-			maxzoom="20" 
-			visible="true" 
-			attribution="Map tiles by  &lt;a href='https://cartodb.com/attributions'>CartoDb &lt;/a>, under  &lt;a href='https://creativecommons.org/licenses/by/3.0/'>CC BY 3.0 &lt;/a>" 
+		<baselayer
+			type="XYZ"
+			id="alidade"
+			label="Alidade Smooth"
+			title="Stadia Maps"
+			url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png"
+			attribution="© Stadia Maps © OpenMapTiles © OpenStreetMap contributors"
+			maxzoom="20"
 		/>
 	</baselayers>
 	<extensions>
