@@ -605,7 +605,8 @@
 						infoformat="application/vnd.ogc.gml" featurecount="5"
 						style="" 
 						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
-						attribution="Source : DGFiP" 
+						attribution="Parcelle ayant une PEV de type habitation et dont l'état d'entretien est mauvais. 
+Source : DGFiP" 
 				>
 				
 				</layer>
