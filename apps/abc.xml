@@ -528,47 +528,49 @@
 		</theme>
 
 		<theme name="Parc privé" collapsed="false" id="parc_prive" icon="fas fa-lock">
-			
-			<layer 	id="insee:vm_geo_rp_logement_princ_parc_prive" 
-					name="Part de logements locatifs privés dans les résidences principales" 
-					attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true" 
-					visible="false" 
-					expanded="true"
-					index="5" 
-					tiled="false" 
-					searchable="false"
-					opacity="0.7"
-					queryable="true"
-					exclusive="true"
-					infopanel="bottom-panel"			
-					infoformat="application/vnd.ogc.gml" featurecount="5"
-					timefilter="true" timecontrol="slider" timemin="2022" timemax="2022"
-					url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
-					attribution="Source : INSEE RP LOGEMENT" 
-					
-			>
-			<template url="./apps/template/_insee_rp_logement_princ_parc_prive_abc.mst"></template>
-			</layer>
+			<group name="Logements locatifs privés" id="grp7">
+				<layer 	id="insee:vm_geo_rp_logement_princ_parc_prive" 
+						name="Part de logements locatifs privés dans les résidences principales" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true" 
+						visible="false" 
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"			
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2022" timemax="2022"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE RP LOGEMENT" 
+						
+				>
+				<template url="./apps/template/_insee_rp_logement_princ_parc_prive_abc.mst"></template>
+				</layer>
 
-			<layer 	id="obs_habitat:geo_vm_lovac" 	
-					name="Taux de logements vacants" 
-					visible="false" 
-					expanded="true"
-					tiled="false" 
-					index="5" 
-					searchable="false"
-					opacity="0.7"
-					queryable="true"
-					exclusive="true"
-					infopanel="bottom-panel"
-					filter="code_siren_des_epci = '0244900809' "
-					infoformat="application/vnd.ogc.gml" featurecount="5"
-					style="" 
-					url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
-					attribution="Source LOVAC, 2020"
-			>
-			<template url="./apps/template/lovac_tx_lovac_abc.mst"></template>
-			</layer>
+				<layer 	id="obs_habitat:geo_vm_lovac" 	
+						name="Taux de logements vacants" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						filter="code_siren_des_epci = '0244900809' "
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2020"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source LOVAC, 2020"
+				>
+				<template url="./apps/template/lovac_tx_lovac_abc.mst"></template>
+				</layer>
+			</group>
 			<group name="Etat du parc" id="grp6">	
 
 				<layer 	id="obs_habitat:geo_vm_dgfip_cat_fisc" 
