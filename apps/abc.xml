@@ -575,7 +575,7 @@
 						name="Taux de logements vacants" 
 						visible="false" 
 						expanded="true"
-						tiled="false" 
+						tiled="true
 						index="5" 
 						searchable="false"
 						opacity="0.7"
@@ -584,7 +584,7 @@
 						infopanel="bottom-panel"
 						filter="code_siren_des_epci = '0244900809' "
 						infoformat="application/vnd.ogc.gml" featurecount="5"
-						timefilter="true" timecontrol="slider" timemin="2020" timemax="2023"
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2020"
 						style="" 
 						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
 						attribution="Source : Lovac" 
