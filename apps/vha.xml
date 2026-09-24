@@ -241,9 +241,9 @@
 						infopanel="bottom-panel"
 						infoformat="application/vnd.ogc.gml" featurecount="5"
 						timefilter="true" timecontrol="slider" timevalues="2021"
-                        style="Filosofi : Revenu médian des locataires,Filosofi : Revenu médian des propriétaires,Filosofi : Taux de pauvreté des locataires,Filosofi : Taux de pauvreté des propriétaires"
+                        style="Filosofi : Revenu médian,Filosofi : Revenu médian des locataires,Filosofi : Revenu médian des propriétaires,Filosofi : Taux de pauvreté des locataires,Filosofi : Taux de pauvreté des propriétaires"
                         styletitle="Statut d'occupation"
-                        stylesalias="Revenu médian des locataires,Revenu médian des propriétaires,Taux de pauvreté des locataires,Taux de pauvreté des propriétaires"
+                        stylesalias="Tout statut,Revenu médian des locataires,Revenu médian des propriétaires,Taux de pauvreté des locataires,Taux de pauvreté des propriétaires"
 						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
 						attribution="Source : INSEE (Filosofi)" 
 						

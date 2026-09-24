@@ -7,15 +7,15 @@
 		<div class = "item active">
 			<div class="container" style="padding-left:0!important;margin-left:0!important;margin-bottom:10%;overflow:hidden;">
 				<div class="row">			
-					<div class="col-xs-2" style="padding-right:0px; padding-left:5px; margin-top:3%;">
-						<img class="img-responsive" src="./apps/template/img/revenu.png" style="max-width:50%;margin: 0 auto;">
+					<div class="col-xs-3" style="padding-right:0px; padding-left:5px; margin-top:0%;">
+						<img class="img-responsive" src="./apps/template/img/revenu.png" style="max-width:25%;margin: 0 auto;">
 						<div class="number" style="margin-top:5%;text-align:center;">{{med_niveau_de_vie}}€</div>
 						<div class="title-number" style="text-align:center;">
 							<p>Revenu annuel médian</p>
 						</div>
 						<div class="definition" style="text-align:center;font-size:10px">
-							<p>Le niveau de vie est égal au revenu disponible du ménage divisé par le nombre d'unités de consommation (UC). Le niveau de vie est donc le même pour tous les individus d'un même ménage.<p>
-							<p>La médiane est le seuil qui partage la population en deux parts égales : 50 % des personnes ont un niveau de vie inférieur à cette valeur, et 50 % ont un niveau de vie supérieur</p>
+							<p>Le niveau de vie est égal au revenu disponible du ménage divisé par le nombre d'unités de consommation (UC). Le niveau de vie est donc le même pour tous les individus d'un même ménage.
+							La médiane est le seuil qui partage la population en deux parts égales : 50 % des personnes ont un niveau de vie inférieur à cette valeur, et 50 % ont un niveau de vie supérieur</p>
 
 						</div>	
 					</div>
