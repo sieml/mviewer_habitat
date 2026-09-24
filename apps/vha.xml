@@ -59,7 +59,7 @@
 				>
 				</layer>
 				<layer 	id="obs_habitat:geo_v_commune_deleguee_ccvha" 
-						name="Communes associées ou déléguées" 
+						name="Communes déléguées" 
 						index="4"
 						visible="true"
 						expanded="false"

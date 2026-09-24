@@ -45,23 +45,13 @@
 					</div>
 					
 					
-					<div class="col-xs-2" >
-						<canvas id="ChartProfilMenages"></canvas>
+					<div class="col-xs-5" >
+						<canvas id="ChartTypoMen1"></canvas>
 						<div style="margin-top:10px; text-align:center">
-    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Profil des ménages</b></p></br>
-    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel}}, {{serie}}</i></br></p></br>
+							<p><b>Profil des familles</b></p>
+							<p><i>{{nom_officiel}} - {{serie}}</i></p>
 						</div> 
 					</div>
-					<div class="col-xs-2" >
-						<canvas id="ChartProfilMenages2"></canvas>
-						<div style="margin-top:10px; text-align:center">
-    					    <p class="title2" style="font-size:11px; margin:0px; margin-top:-8px; "><b>Profil des ménages</b></p></br>
-    						<p class="title2" style="font-size:11px; margin:0px; margin-top:-8px;"><i>{{nom_officiel_comp}}, {{serie}}</i></br></p></br>
-						</div> 
-					</div>
-
-
-
 				</div>
 				<div class="row">	
 					<div class="title-number" style="text-align:left; padding-left:30px;">
@@ -73,7 +63,6 @@
     </div>
 </div>			
 {{/features}}
-
 <style>
 
 	.title-feature {
@@ -101,7 +90,6 @@
 			/*margin-top:0%;*/
 		}
 </style>
-
 <script>
 	//Récupération des attributs
 	var nom_officiel=[];
@@ -187,123 +175,93 @@
 	{{#features}}
 		tx_fam_3_enf_comp.push('{{tx_fam_3_enf_comp}}');
 	{{/features}}	
-
-
-
-	var indicateurProfilMenages_a = {};
-	indicateurProfilMenages_a.getData = function() {
-		var data = {ChartProfilMenages: {labels:[ "Familles sans enfant", "Familles avec 1 enfant" , "Familles avec 2 enfants","Familles avec 3 enfants ou plus"], data: {datasets: [[tx_fam_s_enf,tx_fam_1_enf,tx_fam_2_enf,tx_fam_3_enf]]}}};
-		indicateurProfilMenages_a.drawChart(data);
+	var indicateurTypMen_a = {};
+	indicateurTypMen_a.getData = function() {
+		var data = {ChartTypoMen1: {labels:[nom_officiel,nom_officiel_comp ], data: {datasets: [[tx_fam_s_enf[0],tx_fam_s_enf_comp[0]],[tx_fam_1_enf[0],tx_fam_1_enf_comp[0]],[tx_fam_2_enf[0],tx_fam_2_enf_comp[0]],[tx_fam_3_enf[0],tx_fam_3_enf_comp[0]]]}}};
+		indicateurTypMen_a.drawChart(data);
 	};
-	var indicateurProfilMenages_b = {};
-	indicateurProfilMenages_b.getData = function() {
-		var data = {ChartProfilMenages2: {labels:[ "Familles sans enfant", "Familles avec 1 enfant" , "Familles avec 2 enfants","Familles avec 3 enfants ou plus"], data: {datasets: [[tx_fam_s_enf_comp,tx_fam_1_enf_comp,tx_fam_2_enf_comp,tx_fam_3_enf_comp]]}}};
-		indicateurProfilMenages_b.drawChart(data);
-	};	
+
 	
-
-	indicateurProfilMenages_a.drawChart = function (data) {
-			var ctx1 = document.getElementById("ChartProfilMenages");
-			var maxscale = Math.max.apply(this, data.ChartProfilMenages.data.datasets[0]) / 5;
-			maxscale = Math.trunc(maxscale) * 5;
-			ctx1.getContext("2d").canvas.width = 100;
-			ctx1.getContext("2d").canvas.height = 55;
-			var ChartTxEmplSal = new Chart(ctx1, {
-			type: 'doughnut',
+	indicateurTypMen_a.drawChart = function (data) {
+			var ctx2 = document.getElementById("ChartTypoMen1");
+			var maxscale = Math.max.apply(this, data.ChartTypoMen1.data.datasets[0]) / 5;
+			maxscale = 100;
+			ctx2.getContext("2d").canvas.width = 100;
+			ctx2.getContext("2d").canvas.height = 55;			
+			var ChartTypoMen1 = new Chart(ctx2, {
+			type: 'bar',
 			data: {
-				labels: data.ChartProfilMenages.labels,
-				datasets: [{
-							label: "Part selon le type",
-							backgroundColor: [
-								"#005EA8",
-								"#7EA5D0",
-								"#61B850",
-								"#c7edc0"
-							],
-							borderWidth: 3,
-							borderSkipped:'left',
-							data: data.ChartProfilMenages.data.datasets[0]
-							}]
+				labels: data.ChartTypoMen1.labels,
+				datasets: [
+				    {
+						label: 'Familles sans enfant',
+						backgroundColor: "#005EA8",
+						borderColor: "#005EA8",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[0]
+			    	},
+				    {
+						label: 'Familles avec 1 enfant',
+						backgroundColor: "#7EA5D0",
+						borderColor: "#7EA5D0",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[1]
+			    	},
+				    {
+						label: 'Familles avec 2 enfants',
+						backgroundColor: "#61B850",
+						borderColor: "#61B850",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[2]
+			    	},
+				    {
+						label: 'Familles avec 3 enfants ou plus',
+						backgroundColor: "#c7edc0",
+						borderColor: "#c7edc0",
+						borderWidth: 1,
+						data: data.ChartTypoMen1.data.datasets[3]
+			    	}
+			]
 			},
-			  options: {
+			 options: {
+			    indexAxis: 'y',
 				legend: {
-					position: 'right',
+				      labels: {
+				        font: {
+				          size: 10 // Taille de police réduite
+				        },
+				        boxWidth: 10, // Réduit la taille des carrés de légende
+				        padding: 5 // Moins d'espace autour
+				      }				
 				},
-				tooltips: {					
-					titleFontFamily:"roboto_bold",
-					titleFontSize:13,
-					bodyFontFamily:"roboto_regular",
-					backgroundColor:"rgba(36, 36, 36, 0.85)",
-					callbacks: {
-						label: function(tooltipItem, data) {
-							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(2).toLocaleString() + "%";
-
-						}
-					}
-		        }
+				
+                scales: {
+                     yAxes: [{
+                        stacked: true
+                     }],
+                     xAxes: [{
+						      stacked: true,
+						      ticks: {
+						        max: 100
+						      }
+						    }]
+                }
 			}
 		});  
 	};
 	
-	indicateurProfilMenages_b.drawChart = function (data) {
-			console.log(data)
-			var ctx1 = document.getElementById("ChartProfilMenages2");
-			var maxscale = Math.max.apply(this, data.ChartProfilMenages2.data.datasets[0]) / 5;
-			maxscale = Math.trunc(maxscale) * 5;
-			console.log(data.ChartProfilMenages2.data.datasets[0])
-			ctx1.getContext("2d").canvas.width = 100;
-			ctx1.getContext("2d").canvas.height = 55;
-			var ChartTxEmplSal2 = new Chart(ctx1, {
-			type: 'doughnut',
-			data: {
-				labels: data.ChartProfilMenages2.labels,
-				datasets: [{
-							label: "Part selon le type",
-							backgroundColor: [
-								"#005EA8",
-								"#7EA5D0",
-								"#61B850",
-								"#c7edc0"
-							],
-							borderWidth: 3,
-							borderSkipped:'left',
-							data: data.ChartProfilMenages2.data.datasets[0]
-							}]
-			},
-			  options: {
-				legend: {
-					position: 'right',
-				},
-				tooltips: {					
-					titleFontFamily:"roboto_bold",
-					titleFontSize:13,
-					bodyFontFamily:"roboto_regular",
-					backgroundColor:"rgba(36, 36, 36, 0.85)",
-					callbacks: {
-						label: function(tooltipItem, data) {
-							return parseFloat(data.datasets[0].data[tooltipItem.index]).toFixed(2).toLocaleString() + "%";
 
-						}
-					}
-		        }
-			}
-		});  
-	};	
 	
 	
 	
 	
 	
 	 if  (typeof Chart === 'function') {
-            indicateurProfilMenages_a.getData();
-            indicateurProfilMenages_b.getData();
-			
+            indicateurTypMen_a.getData();
+
     } else {
-            $.get('https://cdn.jsdelivr.net/npm/chart.js', function() {
-				indicateurProfilMenages_a.getData();
-                indicateurProfilMenages_b.getData();
+            $.get('https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js', function() {
+				indicateurTypMen_a.getData();
             });
 	}
-
-</script>
 	
