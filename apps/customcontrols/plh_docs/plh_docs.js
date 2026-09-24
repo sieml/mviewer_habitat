@@ -1,6 +1,8 @@
 var plh_docs = (function () {
 
 
+    var _btn;
+
 
     return {
 
