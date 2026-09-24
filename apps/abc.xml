@@ -317,6 +317,7 @@
 					customcontrol="true" 
 					customcontrolpath="apps/customcontrols/filtres_rpls" 
 					timefilter="true" timecontrol="slider" timemin="2020" timemax="2024"
+					filter="insee IN ('049331', '049248', '049008', '049010', '049036', '049038', '049054', '049056', '049061', '049089', '049178')"
                     style="RPLS : Localisation des logements - Bailleur,RPLS : Localisation des logements - Type,RPLS : Localisation des logements - âge du bâti,RPLS : Localisation des logements"
                     styletitle="Analyses"
                     stylesalias="Bailleur,Type du logement,Age du bâti,Tous les logements"					

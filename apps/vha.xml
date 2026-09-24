@@ -293,12 +293,14 @@
 					expanded="true" 
 					infoformat="application/vnd.ogc.gml" 
 					featurecount="20" 
+					filter="insee IN ('049176', '049026', '049064', '049067', '049367', '049155', '049080', '049161', '049170', '049205', '049217', '049266', '049330', '049344','049183') "
 					customcontrol="true" 
 					customcontrolpath="apps/customcontrols/filtres_rpls" 
                     style="RPLS : Localisation des logements - Bailleur,RPLS : Localisation des logements - Type,RPLS : Localisation des logements - âge du bâti,RPLS : Localisation des logements"
                     styletitle="Analyses"
                     stylesalias="Bailleur,Type du logement,Age du bâti,Tous les logements"					
 					exclusive="true" 
+					
 					url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
 					attribution="Source: RPLS" >
 				<ccfilters logicaloperator="and" nofilterlabel="Toutes">
