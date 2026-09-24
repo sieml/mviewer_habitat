@@ -1,4 +1,4 @@
-(function () {
+var plh_docs = (function () {
 
     const button = `
         <button id="icon_plh_docs"
@@ -34,3 +34,5 @@ fetch("extensions/plh_docs/docs.json")
 
         $("#contenu-docs").html(html);
     });
+
+new CustomComponent("plh_docs", plh_docs.init);
