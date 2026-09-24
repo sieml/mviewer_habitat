@@ -102,6 +102,7 @@
 						searchable="false"
 						queryable="false"
 						infoformat="text/html" featurecount="5"
+						filter="insee IN ('049331', '049248', '049008', '049010', '049036', '049038', '049054', '049056', '049061', '049089', '049178')"
 						opacity="0.9" 
 						exclusive="false"
 						showintoc="true"

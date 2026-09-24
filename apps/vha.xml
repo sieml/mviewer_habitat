@@ -89,6 +89,23 @@
 						attribution="Source : IGN BD TOPO" 
 				>
 				</layer>
+				<layer 	id="obs_habitat:geo_enveloppe_urbaine" 
+						name="Enveloppes urbaines" 
+						index="2"
+						visible="false"
+						expanded="false"
+						tiled="true" 
+						searchable="false"
+						queryable="false"
+						infoformat="text/html" featurecount="5"
+						filter="insee IN ('049176', '049026', '049064', '049067', '049367', '049155', '049080', '049161', '049170', '049205', '049217', '049266', '049330', '049344','049183') "
+						opacity="0.9" 
+						exclusive="false"
+						showintoc="true"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : IGN BD TOPO" 
+				>
+				</layer>				
 				<layer 	id="obs_habitat:geo_v_secteur_ccvha" 
 				        index="5"
 						name="Secteurs" 
