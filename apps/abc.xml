@@ -21,6 +21,8 @@
 	<extensions>
      <extension type="component" id="layerfilter" path="demo/addons"/>
      <extension type="component" id="habitat_commentaire" path="apps/customcontrols"/>
+	 <extension type="component" id="plh_docs" path="apps/customcontrols"/>
+
     </extensions>
 
     <proxy url=""/>
@@ -289,9 +291,9 @@
 						infopanel="bottom-panel"
 						infoformat="application/vnd.ogc.gml" featurecount="5"
 						timefilter="true" timecontrol="slider" timemin="2020" timemax="2024"
-                        style="RPLS : Nombre de logements sociaux,RPLS : Taux de logement sociaux"
+                        style="RPLS : Taux de logement sociaux,RPLS : Nombre de logements sociaux"
                         styletitle="Analyses"
-                        stylesalias="Nombre de logements sociaux, Taux de logements sociaux"
+                        stylesalias="Taux de logements sociaux,Nombre de logements sociaux"
 						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
 						attribution="Source : RPLS" 
 						
