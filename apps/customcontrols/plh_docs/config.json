@@ -1,6 +1,7 @@
 {
   "js": ["plh_docs.js"],
   "html": "plh_docs.html",
+   "css" : "style.css",
   "target": "mv-navbar",
   "options": {
     "title": "plh_docs"
