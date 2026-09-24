@@ -9,34 +9,41 @@ var plh_docs = (function () {
             <span class="fas fa-book"></span>
         </button>
     `;
+
     return {
-        init : function() { 
+
+        init: function () {
+
             $(".mv-navbuttons").append(button);
+
+            fetch("extensions/plh_docs/docs.json")
+                .then(response => response.json())
+                .then(data => {
+
+                    let html = "<ul>";
+
+                    data.forEach(doc => {
+                        html += `
+                            <li>
+                                ${doc.url}
+                                    ${doc.titre}
+                                </a>
+                            </li>
+                        `;
+                    });
+
+                    html += "</ul>";
+
+                    $("#contenu-docs").html(html);
+
+                })
+                .catch(error => {
+                    console.error("Erreur chargement docs.json", error);
+                });
+
         }
-    }
-    
+    };
 
 })();
-
-fetch("extensions/plh_docs/docs.json")
-    .then(response => response.json())
-    .then(data => {
-
-        let html = "<ul>";
-
-        data.forEach(doc => {
-            html += `
-                <li>
-                    ${doc.url}
-                        ${doc.titre}
-                    </a>
-                </li>
-            `;
-        });
-
-        html += "</ul>";
-
-        $("#contenu-docs").html(html);
-    });
-
+    
 new CustomComponent("plh_docs", plh_docs.init);
