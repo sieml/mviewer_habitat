@@ -1,0 +1,8 @@
+{
+  "js": ["plh_docs.js"],
+  "html": "plh_docs.html",
+  "target": "navbar",
+  "options": {
+    "title": "plh_docs"
+  }
+}

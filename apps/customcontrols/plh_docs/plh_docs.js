@@ -1,14 +1,6 @@
 var plh_docs = (function () {
 
-    const button = `
-        <button id="icon_plh_docs"
-            type="button"
-            class="btn btn-default navbar-btn mv-navbar-btn"
-            title="Documents du PLH">
 
-            <span class="fas fa-book"></span>
-        </button>
-    `;
 
     return {
 
