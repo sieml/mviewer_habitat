@@ -9,8 +9,12 @@ var plh_docs = (function () {
             <span class="fas fa-book"></span>
         </button>
     `;
-
-    $(".mv-navbuttons").append(button);
+    return {
+        init : function() { 
+            $(".mv-navbuttons").append(button);
+        }
+    }
+    
 
 })();
 
