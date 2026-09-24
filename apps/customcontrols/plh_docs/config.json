@@ -1,7 +1,7 @@
 {
   "js": ["plh_docs.js"],
   "html": "plh_docs.html",
-  "target": "navbar",
+  "target": "mv-navbar",
   "options": {
     "title": "plh_docs"
   }
