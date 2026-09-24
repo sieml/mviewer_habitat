@@ -10,20 +10,29 @@ var plh_docs = (function () {
 
            
 
-            fetch("docs.json")
+            fetch("apps/customcontrols/plh_docs/docs.json")
                 .then(response => response.json())
                 .then(data => {
 
                     let html = "<ul>";
 
                     data.forEach(doc => {
+
                         html += `
                             <li>
-                                ${doc.url}
+                                <a href="${doc.url}"
+                                target="_blank"
+                                rel="noopener noreferrer">
                                     ${doc.titre}
                                 </a>
                             </li>
                         `;
+
+
+
+
+
+                        
                     });
 
                     html += "</ul>";
