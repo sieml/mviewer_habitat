@@ -205,27 +205,7 @@
 				<template url="./apps/template/insee_niveau_de_vie_vha.mst"></template>
 				</layer>				
 				
-				<layer 	id="obs_habitat:geo_vm_insee_emploi" 
-						name="Nombre d'emplois au lieu de travail" 
-						visible="false" 
-						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
-						expanded="true"
-						index="5" 
-						tiled="false" 
-						searchable="false"
-						opacity="0.7"
-						queryable="true"
-						exclusive="true"
-						infopanel="bottom-panel"
-						infoformat="application/vnd.ogc.gml" featurecount="5"
-						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021"
-						style="" 
-						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
-						attribution="Source : INSEE (RP)" 
-						
-				>
-				<template url="./apps/template/insee_emploi_vha.mst"></template>
-				</layer>	
+	
 
 				<layer 	id="insee:vm_geo_filosofi_log_tp_nivvie " 
 						name="Revenu et taux de pauvreté par statut d'occupation" 
@@ -251,7 +231,31 @@
 				<template url="./apps/template/filosofi_nivvie_statut_occupation_abc.mst"></template>
 				</layer>
 					
-			</group>								
+			</group>
+			<group name="Emploi" id="grp3">
+				<layer 	id="obs_habitat:geo_vm_insee_emploi" 
+						name="Nombre d'emplois au lieu de travail" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE (RP)" 
+						
+				>
+				<template url="./apps/template/insee_emploi_vha.mst"></template>
+				</layer>
+			</group>
+
 		</theme>
 		
 		<theme name="Parc social" collapsed="false" id="parc_social" icon="fas fa-handshake">
