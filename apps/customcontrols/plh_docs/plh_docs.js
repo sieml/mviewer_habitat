@@ -6,9 +6,9 @@ var plh_docs = (function () {
 
         init: function () {
 
-            $(".mv-navbuttons").append(button);
+           
 
-            fetch("extensions/plh_docs/docs.json")
+            fetch("docs.json")
                 .then(response => response.json())
                 .then(data => {
 
