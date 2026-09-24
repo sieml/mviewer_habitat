@@ -21,7 +21,7 @@
 	<extensions>
      <extension type="component" id="layerfilter" path="demo/addons"/>
      <extension type="component" id="habitat_commentaire" path="apps/customcontrols"/>
-	 <extension type="component" id="plh_docs" path="apps/customcontrols"/>
+	<!-- <extension type="component" id="plh_docs" path="apps/customcontrols"/>-->
 
     </extensions>
 
@@ -223,6 +223,35 @@
 				<template url="./apps/template/insee_niveau_de_vie_abc.mst"></template>
 				</layer>				
 				
+	
+
+				<layer 	id="insee:vm_geo_filosofi_log_tp_nivvie " 
+						name="Revenu et taux de pauvreté par statut d'occupation" 
+						visible="false" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timevalues="2021"
+                        style="Filosofi : Revenu médian,Filosofi : Revenu médian des locataires,Filosofi : Revenu médian des propriétaires,Filosofi : Taux de pauvreté des locataires,Filosofi : Taux de pauvreté des propriétaires"
+                        styletitle="Statut d'occupation"
+                        stylesalias="Tout statut d'occupation,Revenu médian des locataires,Revenu médian des propriétaires,Taux de pauvreté des locataires,Taux de pauvreté des propriétaires"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE (Filosofi)" 
+						
+				>
+				<template url="./apps/template/filosofi_nivvie_statut_occupation_abc.mst"></template>
+				</layer>
+
+
+			</group>
+			<group name="Emploi" id="grp3">
 				<layer 	id="obs_habitat:geo_vm_insee_emploi" 
 						name="Nombre d'emplois au lieu de travail" 
 						visible="false" 
@@ -243,34 +272,10 @@
 						
 				>
 				<template url="./apps/template/insee_emploi_abc.mst"></template>
-				</layer>	
-
-				<layer 	id="insee:vm_geo_filosofi_log_tp_nivvie " 
-						name="Revenu et taux de pauvreté par statut d'occupation" 
-						visible="false" 
-						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true"
-						expanded="true"
-						index="5" 
-						tiled="false" 
-						searchable="false"
-						opacity="0.7"
-						queryable="true"
-						exclusive="true"
-						infopanel="bottom-panel"
-						infoformat="application/vnd.ogc.gml" featurecount="5"
-						timefilter="true" timecontrol="slider" timevalues="2021"
-                        style="Filosofi : Revenu médian,Filosofi : Revenu médian des locataires,Filosofi : Revenu médian des propriétaires,Filosofi : Taux de pauvreté des locataires,Filosofi : Taux de pauvreté des propriétaires"
-                        styletitle="Statut d'occupation"
-                        stylesalias="Tout statut,Revenu médian des locataires,Revenu médian des propriétaires,Taux de pauvreté des locataires,Taux de pauvreté des propriétaires"
-						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
-						attribution="Source : INSEE (Filosofi)" 
-						
-				>
-				<template url="./apps/template/filosofi_nivvie_statut_occupation_abc.mst"></template>
 				</layer>
 
+			</group>
 
-			</group>								
 		</theme>
 		
 		<theme name="Parc social" collapsed="false" id="parc_social" icon="fas fa-handshake">
