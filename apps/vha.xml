@@ -557,6 +557,7 @@
 						exclusive="true"
 						infopanel="bottom-panel"			
 						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2025" timemax="2025"
 						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
 						attribution="Catégories fiscales 7 et 8. 
 Source : (DGFiP)" 
@@ -607,6 +608,31 @@ Source : DGFiP"
 			</layer>
 
 			</group>
+
+
+			<group name="Parc locatif privé" id="grp7">
+				<layer 	id="obs_habitat:geo_v_carte_des_loyers" 
+						name="Prix moyen au m² des locations"
+						attributefilter="true" attributefield="filtre" attributevalues="Maisons,Appartements 1/2 pièces,Appartements 3 pièces" attributelabel="Type de bien" attributefilterenabled="true"
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2024" timemax="2024"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : Estimations ANIL, à partir des données du Groupe SeLoger et de leboncoin" 
+						
+				>
+				</layer>
+			</group>
+
 
 		</theme>
 

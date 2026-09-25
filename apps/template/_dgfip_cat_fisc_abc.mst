@@ -130,7 +130,6 @@
 			data: {
 				labels: data.ChartLog.labels,
 				datasets: [{
-							label: "Part selon le type",
 							backgroundColor: [
 								"#114015",
 								"#509727",
@@ -142,7 +141,7 @@
 								"#8C1812",
 
 							],
-							borderWidth: 3,
+							borderWidth: 0,
 							borderSkipped:'left',
 							data: data.ChartLog.data.datasets[0]
 							}]
