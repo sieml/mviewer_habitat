@@ -3,7 +3,7 @@
     <application 
 		title="Observatoire de l'habitat Anjou Bleu Communauté" 
 		logo="./apps/img/logo_abc.png" 
-		help="./apps/mviewer_help_obs_habitat.html" 
+		help="./apps/mviewer_help_obs_habitat_abc.html" 
 		showhelp="true"
 		exportpng="true" 
 		measuretools="true" 
@@ -518,7 +518,7 @@
                     	style="Logement : Nombre de logements locatifs sociaux commencés"						
 						infopanel="bottom-panel"
 						infoformat="application/vnd.ogc.gml" featurecount="5"
-						timefilter="true" timecontrol="slider" timemin="2022" timemax="2024"
+						timefilter="true" timecontrol="slider" timemin="2022" timemax="2025"
 						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
 						attribution="Source : SITADEL (sur la base des DOC)" 
 						

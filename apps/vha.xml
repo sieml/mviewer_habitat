@@ -3,7 +3,7 @@
     <application 
 		title="Observatoire de l'habitat de la CC des Vallées du Haut-Anjou" 
 		logo="./apps/img/logo_ccvha.png" 
-		help="./apps/mviewer_help_obs_habitat.html" 
+		help="./apps/mviewer_help_obs_habitat_vha.html" 
 		showhelp="false"
 		exportpng="true" 
 		measuretools="true" 
