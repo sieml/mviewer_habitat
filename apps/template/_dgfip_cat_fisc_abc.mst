@@ -126,7 +126,7 @@
 			ctx1.getContext("2d").canvas.width = 100;
 			ctx1.getContext("2d").canvas.height = 55;
 			var ChartLog = new Chart(ctx1, {
-			type: 'doughnut',
+			type: 'bar',
 			data: {
 				labels: data.ChartLog.labels,
 				datasets: [{

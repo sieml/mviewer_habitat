@@ -545,11 +545,12 @@
 			<group name="Etat du parc" id="grp6">	
 
 				<layer 	id="obs_habitat:geo_vm_dgfip_cat_fisc" 
-						name="Catégories fiscales des habitations (Classes 7 et 8)" 
+						name="Part de logements dégradés" 
 						visible="false" 
 						expanded="true"
 						index="5" 
 						tiled="false" 
+						filter="insee IN ('049331', '049248', '049008', '049010', '049036', '049038', '049054', '049056', '049061', '049089', '049178')"
 						searchable="false"
 						opacity="0.7"
 						queryable="true"
@@ -558,7 +559,8 @@
 						infoformat="application/vnd.ogc.gml" featurecount="5"
 						timefilter="true" timecontrol="slider" timemin="2025" timemax="2025"
 						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
-						attribution="Source : DGFiP" 
+						attribution="Catégories fiscales 7 et 8. 
+Source : (DGFiP)" 
 						
 				>
 				<template url="./apps/template/_dgfip_cat_fisc_abc.mst"></template>
