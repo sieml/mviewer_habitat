@@ -493,6 +493,124 @@
 			</group>	
 				
 		</theme>
+
+
+
+
+
+		<theme name="Parc privé" collapsed="false" id="parc_prive" icon="fas fa-lock">
+			<group name="Logements locatifs privés" id="grp7">
+				<layer 	id="insee:vm_geo_rp_logement_princ_parc_prive" 
+						name="Part de logements locatifs privés dans les résidences principales" 
+						attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true" 
+						visible="false" 
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"			
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2022" timemax="2022"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : INSEE RP LOGEMENT" 
+						
+				>
+				<template url="./apps/template/_insee_rp_logement_princ_parc_prive_abc.mst"></template>
+				</layer>
+
+				<layer 	id="obs_habitat:geo_vm_lovac" 	
+						name="Taux de logements vacants" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						filter="code_siren_des_epci = '0244900809' "
+						timefilter="true" timecontrol="slider" timemin="2020" timemax="2025"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source LOVAC, 2020"
+				>
+				<template url="./apps/template/lovac_tx_lovac_abc.mst"></template>
+				</layer>
+			</group>
+			<group name="Etat du parc" id="grp6">	
+
+				<layer 	id="obs_habitat:geo_vm_dgfip_cat_fisc" 
+						name="Catégories fiscales des habitations (Classes 7 et 8)" 
+						visible="false" 
+						expanded="true"
+						index="5" 
+						tiled="false" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"			
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						timefilter="true" timecontrol="slider" timemin="2025" timemax="2025"
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Source : DGFiP" 
+						
+				>
+				<template url="./apps/template/_dgfip_cat_fisc_abc.mst"></template>
+				</layer>
+				<layer 	id="anahab:geo_niv_etat_5 " 
+						name="Localisation des logements dégradés" 
+						visible="false" 
+						expanded="true"
+						tiled="false" 
+						index="5" 
+						searchable="false"
+						opacity="0.7"
+						queryable="true"
+						exclusive="true"
+						infopanel="bottom-panel"
+						filter="insee IN ('049331', '049248', '049008', '049010', '049036', '049038', '049054', '049056', '049061', '049089', '049178')"
+						infoformat="application/vnd.ogc.gml" featurecount="5"
+						style="" 
+						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+						attribution="Parcelle ayant une PEV de type habitation et dont l'état d'entretien est mauvais. 
+Source : DGFiP" 
+				>
+				
+				</layer>
+			<layer 	id="obs_habitat:geo_vm_signal_logement" 
+					name="Nombre de signalements par an" 
+					attributefilter="true" attributefield="echelle" attributevalues="Commune,EPCI" attributelabel="Échelle" attributefilterenabled="true" 
+					visible="false" 
+					expanded="true"
+					index="5" 
+					tiled="false" 
+					searchable="false"
+					opacity="0.7"
+					queryable="true"
+					filter="insee IN ('049176', '049026', '049064', '049067', '049367', '049155', '049080', '049161', '049170', '049205', '049217', '049266', '049330', '049344','049183') "
+					exclusive="true"
+					infopanel="bottom-panel"			
+					infoformat="application/vnd.ogc.gml" featurecount="5"
+					timefilter="true" timecontrol="slider" timemin="2024" timemax="2026"
+					url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
+					attribution="Source : Signal Logement" 
+					
+			>
+			<template url="./apps/template/signal_logement_nb_signalements_abc.mst"></template>
+			</layer>
+
+			</group>
+
+		</theme>
+
+
+
 		<theme name="Marché immobilier" collapsed="false" id="marche_immobilier" icon="fas fa-lock">
 			<group name="Construction neuve" id="grp1">
 
