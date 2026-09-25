@@ -57,14 +57,15 @@
     					</div> 
     				</div>
 
-					<div class="col-xs-2" >
-						<img class="img-responsive" src="./apps/template/img/couple.png" style="max-width:50%;margin: 0 auto;">
+					<div class="col-xs-3" >
+						<img class="img-responsive" src="./apps/template/img/couple.png" style="max-width:25%;margin: 0 auto;">
 						<div class="number" style="margin-top:5%;text-align:center;">{{ind_vieillissement}}</div>
 						<div class="title-number" style="text-align:center;">
 							<p>Indice de vieillissement<p>
 						</div>
 						<div class="definition" style="text-align:center;font-size:10px">
 							<p>L'indice de vieillissement est le rapport de la population des 65 ans et plus sur celle des moins de 20 ans.<p>
+							<p>Plus l’indice se rapproche de 100 et plus les gens âgés sont nombreux sur le territoire par rapport aux jeunes</p>
 						</div>						
 					</div>
 
@@ -143,14 +144,14 @@
 <script>
 
 	
-	var tx_25m=[];
+	var tx_20m=[];
 	{{#features}}
-		tx_25m.push('{{tx_25m}}');
+		tx_20m.push('{{tx_20m}}');
 	{{/features}}	
 	
-	var tx_25_64=[];
+	var tx_20_64=[];
 	{{#features}}
-		tx_25_64.push('{{tx_25_64}}');
+		tx_20_64.push('{{tx_20_64}}');
 	{{/features}}	
 	
 	var tx_65p=[];
@@ -158,14 +159,14 @@
 		tx_65p.push('{{tx_65p}}');
 	{{/features}}	
 
-	var tx_25m_comp=[];
+	var tx_20m_comp=[];
 	{{#features}}
-		tx_25m_comp.push('{{tx_25m_comp}}');
+		tx_20m_comp.push('{{tx_20m_comp}}');
 	{{/features}}	
 	
-	var tx_25_64_comp=[];
+	var tx_20_64_comp=[];
 	{{#features}}
-		tx_25_64_comp.push('{{tx_25_64_comp}}');
+		tx_20_64_comp.push('{{tx_20_64_comp}}');
 	{{/features}}	
 	
 	var tx_65p_comp=[];
@@ -185,7 +186,7 @@
 	
 	var indicateurPopAge_b = {};
 	indicateurPopAge_b.getData = function() {
-		var data = {ChartPopAge: {labels:[nom_officiel,nom_officiel_comp], data: {datasets: [[tx_25m[0],tx_25m_comp[0]],[tx_25_64[0],tx_25_64_comp[0]],[tx_65p[0],tx_65p_comp[0]]], skipNull: true }}};
+		var data = {ChartPopAge: {labels:[nom_officiel,nom_officiel_comp], data: {datasets: [[tx_20m[0],tx_20m_comp[0]],[tx_20_64[0],tx_20_64_comp[0]],[tx_65p[0],tx_65p_comp[0]]], skipNull: true }}};
 		indicateurPopAge_b.drawChart(data);
 	};
     
@@ -201,14 +202,14 @@
 				labels: data.ChartPopAge.labels,
 				datasets: [
 				    {
-						label: 'Moins de 25 ans',
+						label: 'Moins de 20 ans',
 						backgroundColor: "#005EA8",
 						borderColor: "#005EA8",
 						borderWidth: 1,
 						data: data.ChartPopAge.data.datasets[0]
 			    	},
 				    {
-						label: '25-64 ans',
+						label: '20-64 ans',
 						backgroundColor: "#64BE53",
 						borderColor: "#64BE53",
 						borderWidth: 1,
