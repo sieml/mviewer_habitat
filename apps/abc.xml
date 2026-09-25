@@ -171,7 +171,7 @@
 						exclusive="true"
 						infopanel="bottom-panel"
 						infoformat="application/vnd.ogc.gml" featurecount="5"
-						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021" timemin="2010" timemax="2021"
+						timefilter="true" timecontrol="slider" timevalues="2012,2017,2023" timemin="2012" timemax="2023"
 						style="" 
 						url="https://sieml.sirap.fr/geoserver/wms?authkey=a5d5bb8b-c457-4c01-8e43-71814b8dfb2a" 
 						attribution="Source : INSEE (RP)" 

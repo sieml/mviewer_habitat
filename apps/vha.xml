@@ -145,7 +145,7 @@
 				        exclusive="true"		
 						infopanel="bottom-panel"
 						infoformat="application/vnd.ogc.gml" featurecount="5"
-						timefilter="true" timecontrol="slider" timevalues="2010,2015,2021" timemin="2010" timemax="2021"
+						timefilter="true" timecontrol="slider" timevalues="2012,2017,2023" timemin="2012" timemax="2023"
                         style="Indicateurs socio-démographiques : Population municipale,Indicateurs socio-démographiques : Densité de population,Indicateurs socio-démographiques : indice de vieillissement"
                         styletitle="Population municipale"
                         stylesalias="Population municipale,Densité de population,Indice de vieillissement"
