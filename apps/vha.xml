@@ -108,7 +108,7 @@
 				</layer>				
 				<layer 	id="obs_habitat:geo_v_secteur_ccvha" 
 				        index="5"
-						name="Secteurs" 
+						name="Bassins de vie" 
 						visible="false"
 						expanded="false"
 						tiled="true" 
