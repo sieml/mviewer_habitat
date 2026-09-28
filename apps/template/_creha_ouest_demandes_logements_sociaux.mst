@@ -13,7 +13,7 @@
 						<img class="img-responsive" src="./apps/template/img/pensee.png" style="max-width:50%;margin: 0 auto;">
 						<div class="number" style="margin-top:5%;text-align:center;">{{nb_menages}}</div>
 						<div class="title-number" style="text-align:center;overflow-wrap: break-word; word-wrap: break-word;">
-							<p>Nombre de demandes de logements sociaux au 1er janvier (choix n°1)</p>
+							<p>Nombre de demandes de logements sociaux au 1er janvier (Commune choisie en choix n°1)</p>
 						</div>
 
 

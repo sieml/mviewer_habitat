@@ -62,6 +62,7 @@
 						<div class="number" style="margin-top:5%;text-align:center;">{{ind_vieillissement}}</div>
 						<div class="title-number" style="text-align:center;">
 							<p>Indice de vieillissement<p>
+							<p>{{ind_vieillissement_dept}} pour Le Maine-et-Loire</p>
 						</div>
 						<div class="definition" style="text-align:center;font-size:10px">
 							<p>L'indice de vieillissement est le rapport de la population des 65 ans et plus sur celle des moins de 20 ans.<p>

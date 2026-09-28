@@ -249,7 +249,7 @@
 				    plugins: {
 				      title: {
 				        display: true,
-				        text: 'Evolution des demandes et attributions de logements sociaux (base 100 en 2021)'
+				        text: 'Evolution de la pression locative'
 				      },
 				    },
 				    responsive: true
