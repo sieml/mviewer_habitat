@@ -1,0 +1,76 @@
+/* ===== Panneau d'information ===== */
+.info-box {
+  position: absolute;
+  top: 65px;
+  right: 320px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+/* Effet de survol */
+.info-box:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* ===== Checkbox cachée ===== */
+#toggle-box {
+  display: none;
+}
+
+/* ===== Bouton de fermeture ===== */
+.close-btn {
+  cursor: pointer;
+  font-size: 12px;
+  color: #666;
+  transition: color 0.2s ease;
+}
+.close-btn:hover {
+  color: #000;
+}
+
+/* ===== Bouton flottant pour rouvrir ===== */
+.info-toggle-btn {
+  position: absolute;
+  top: 65px;
+  right: 300px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-size: 12px;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.info-toggle-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ===== Comportement : ouverture / fermeture ===== */
+
+/* Quand la boîte est ouverte, cacher le bouton ℹ️ */
+#toggle-box:checked ~ .info-toggle-btn {
+  display: none;
+}
+
+/* Quand la boîte est fermée, cacher le panneau */
+#toggle-box:not(:checked) ~ .info-box {
+  display: none;
+}

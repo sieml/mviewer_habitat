@@ -21,6 +21,7 @@
 	<extensions>
      <extension type="component" id="layerfilter" path="demo/addons"/>
 	<!-- <extension type="component" id="plh_docs" path="apps/customcontrols"/>-->
+	<extension type="component" id="habitat_commentaire_vha" path="apps/customcontrols"/>
     </extensions>
     <proxy url=""/>
     <themes mini="false">	
