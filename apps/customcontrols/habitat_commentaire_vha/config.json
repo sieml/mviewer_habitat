@@ -1,9 +1,9 @@
 {
   "js": ["main.js"],
   "css": "style.css",
-  "html": "habitat_commentaire.html",
+  "html": "habitat_commentaire_vha.html",
   "target": "map",
   "options": {
-    "title": "habitat_commentaire"
+    "title": "habitat_commentaire_vha"
   }
 }

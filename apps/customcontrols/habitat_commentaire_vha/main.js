@@ -1,6 +1,6 @@
 
 
-var habitat_commentaire = (function () {
+var habitat_commentaire_vha = (function () {
   var data = null;
   var graph = null;
 
@@ -27,7 +27,7 @@ var layerComments = {
       container.innerHTML = "";
 
       // Rendre visible le composant au démarrage
-      var componentWrapper = document.getElementById("habitat_commentaire-custom-component");
+      var componentWrapper = document.getElementById("habitat_commentaire-vha-custom-component");
       if (componentWrapper) componentWrapper.style.display = "none";
 
       // Écouteur global sur les clics des couches
@@ -41,7 +41,7 @@ var layerComments = {
  // Met à jour le texte selon la couche active
     updateComment: function (layerId) {
      var container = document.getElementById("commentaire");
-      var componentWrapper = document.getElementById("habitat_commentaire-custom-component");
+      var componentWrapper = document.getElementById("habitat_commentaire-vha-custom-component");
       if (!container || !componentWrapper) return;
 
       if (layerId && layerComments[layerId]) {
@@ -59,6 +59,6 @@ var layerComments = {
 //Very important first parameter is customComponent id + '-componentLoaded',
 //second parameter is init function to execute
 //document.addEventListener('graph3d-componentLoaded', graph3d.init);
-new CustomComponent("habitat_commentaire", habitat_commentaire.init);
+new CustomComponent("habitat_commentaire_vha", habitat_commentaire_vha.init);
 
 
