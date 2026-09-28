@@ -80,7 +80,7 @@
     border-radius: 6px;
     background: #fff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    border-left: 4px solid #005EA8;
+    border-left: 4px solid #3CABC2;
 }
 
 .commentaire-header {
@@ -88,7 +88,7 @@
     align-items: center;
     gap: 9px;
     margin-bottom: 10px;
-    color: #005EA8;
+    color: #3CABC2;
     font-size: 15px;
     font-weight: 600;
 }
