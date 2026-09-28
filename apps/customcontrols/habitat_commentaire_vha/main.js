@@ -37,7 +37,7 @@ var layerComments = {
  // Met à jour le texte selon la couche active
     updateComment: function (layerId) {
      var container = document.getElementById("commentaire");
-      var componentWrapper = document.getElementById("habitat_commentaire-vha-custom-component");
+      var componentWrapper = document.getElementById("habitat_commentaire_vha-custom-component");
       if (!container || !componentWrapper) return;
 
       if (layerId && layerComments[layerId]) {
