@@ -603,7 +603,7 @@ Source : DGFiP"
 				>
 				<template url="./apps/template/_dgfip_cat_fisc_abc.mst"></template>
 				</layer>
-				<layer 	id="anahab:geo_niv_etat_5 " 
+				<layer 	id="anahab:v_geo_cat_fiscale_princ_7_8" 
 						name="Localisation des logements dégradés" 
 						visible="false" 
 						expanded="true"
@@ -656,7 +656,7 @@ Source : DGFiP"
 						index="5" 
 						searchable="false"
 						opacity="0.7"
-						queryable="true"
+						queryable="false"
 						exclusive="true"
 						infopanel="bottom-panel"
 						infoformat="application/vnd.ogc.gml" featurecount="5"

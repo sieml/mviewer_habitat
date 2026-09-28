@@ -62,11 +62,6 @@
 
 
 				</div>
-				<div class="row">	
-					<div class="title-number" style="text-align:left; padding-left:30px;">
-							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{millesime}} - Source : RPLS</i></p>
-						</div>
-				</div>
 
 			</div>
 		</div>

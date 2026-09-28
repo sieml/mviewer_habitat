@@ -14,8 +14,7 @@
 							<p>Revenu annuel médian</p>
 						</div>
 						<div class="definition" style="text-align:center;font-size:10px">
-							<p>Le niveau de vie est égal au revenu disponible du ménage divisé par le nombre d'unités de consommation (UC). Le niveau de vie est donc le même pour tous les individus d'un même ménage.
-							La médiane est le seuil qui partage la population en deux parts égales : 50 % des personnes ont un niveau de vie inférieur à cette valeur, et 50 % ont un niveau de vie supérieur</p>
+							<p>La médiane est le seuil qui partage la population en deux parts égales : 50 % des personnes ont un niveau de vie inférieur à cette valeur, et 50 % ont un niveau de vie supérieur</p>
 						</div>							
 					</div>
 					
@@ -28,11 +27,6 @@
     				</div>
 
     				
-				</div>
-				<div class="row">	
-					<div class="title-number" style="text-align:left; padding-left:30px;">
-							<p><i style="font-size:10px; text-align:center; font-family:'roboto_regular'; color:#777;">{{nom_officiel}} - {{serie}} - Source : INSEE RP</i></p>
-						</div>
 				</div>
 
 			</div>
