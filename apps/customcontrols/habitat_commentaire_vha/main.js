@@ -30,6 +30,7 @@ var layerComments = {
       document.querySelectorAll(".mv-nav-item").forEach(function (item) {
         item.addEventListener("click", function () {
           var layerId = item.getAttribute("data-layerid");
+          console.log(layerId);
           habitat_commentaire_vha.updateComment(layerId);
         });
       });
