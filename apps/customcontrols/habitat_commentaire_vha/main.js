@@ -5,7 +5,43 @@ var habitat_commentaire_vha = (function () {
   var graph = null;
 
 var layerComments = {
-    "obs_habitatgeo_vm_insee_profil_population": "Le territoire de la CCVHA est relativement équilibré d’un point de vue démographique. 3 communes dépassent les 5000 habitants tandis que 5 communes ont moins de 1000 habitants. Le territoire est le plus jeune du Département (les moins de 30 ans représentent 38% de la population). Une tendance au vieillissement est cependant engagé, impliquant des enjeux d’adaptation du parc de logements afin d’assurer le maintien à domicile de certains séniors.",
+    "obs_habitatgeo_vm_insee_profil_population": `
+    <div class="chiffre-cle">
+        <strong>38 %</strong>
+        <span>de moins de 30 ans</span>
+    </div>
+
+    <p>
+        Le territoire de la CCVHA est relativement équilibré
+        d’un point de vue démographique.
+    </p>
+
+    <input type="checkbox" id="analyse-population" class="toggle-analyse">
+
+    <label for="analyse-population" class="lire-analyse">
+        <span class="texte-lire">Lire l'analyse</span>
+        <span class="texte-fermer">Réduire</span>
+        <i class="fa fa-angle-down"></i>
+    </label>
+
+    <div class="analyse-complete">
+        <p>
+            3 communes dépassent les 5 000 habitants tandis que
+            5 communes ont moins de 1 000 habitants.
+        </p>
+
+        <p>
+            Le territoire est le plus jeune du Département
+            (les moins de 30 ans représentent 38 % de la population).
+        </p>
+
+        <p>
+            Une tendance au vieillissement est cependant engagée,
+            impliquant des enjeux d’adaptation du parc de logements
+            afin d’assurer le maintien à domicile de certains séniors.
+        </p>
+    </div>
+`,
     "obs_habitatgeo_vm_insee_evolution_population": "Le territoire de la CCVHA se démarque par une dynamique démographique (+2% entre 2016 et 2022), malgré un net ralentissement observé depuis 2015.",
     "obs_habitatgeo_vm_insee_menages":"La population de la CCVHA est jeune et familiale. La taille moyenne des ménages de la CCVHA (2.93 personnes par foyer) est largement supérieure à la moyenne départementale (2.48). Le desserrement des ménages causé en partie par le vieillissement de la population participe cependant à une diminution de la taille des ménages.",
     "obs_habitatgeo_vm_insee_med_niveau_de_vie": 'La médiane du niveau de vie des habitants de la CCVHA est sensiblement égale à la médiane départementale.',
