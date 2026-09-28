@@ -34,6 +34,11 @@ var layerComments = {
           habitat_commentaire_vha.updateComment(layerId);
         });
       });
+
+      # couche affichée à lorigine
+      habitat_commentaire_vha.updateComment("obs_habitatgeo_vm_insee_profil_population")
+
+
     },
  // Met à jour le texte selon la couche active
     updateComment: function (layerId) {
