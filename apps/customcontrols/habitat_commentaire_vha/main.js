@@ -71,7 +71,6 @@ var layerComments = {
         });
       });
 
-      # couche affichée à lorigine
       habitat_commentaire_vha.updateComment("obs_habitatgeo_vm_insee_profil_population")
 
 
