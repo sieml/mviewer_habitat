@@ -10,9 +10,7 @@ var layerComments = {
     "obs_habitat:geo_vm_insee_menages":"La population de la CCVHA est jeune et familiale. La taille moyenne des ménages de la CCVHA (2.93 personnes par foyer) est largement supérieure à la moyenne départementale (2.48). Le desserrement des ménages causé en partie par le vieillissement de la population participe cependant à une diminution de la taille des ménages.",
     "obs_habitat:geo_vm_insee_med_niveau_de_vie": 'La médiane du niveau de vie des habitants de la CCVHA est sensiblement égale à la médiane départementale.',
     "obs_habitat:geo_vm_insee_emploi":"Le territoire de la CCVHA a une vocation principalement résidentielle. Les habitants ont tendance à partir travailler en dehors du territoire (degré variable en fonction des communes).",
-    "obs_habitat:geo_vm_rpls_vha":"Les communes déléguées de Châteauneuf-sur-Sarthe et Champigné sont celles qui ont le taux de logements sociaux le plus élevé (respectivement 17.8% et 19%).",
-    "obs_habitat:geo_vm_rpls_vha":"Le parc social est composé en majorité de grands logements (T4 et plus), représentant 79% du parc, en inadéquation avec les évolutions socio-démographique constatées.",
-    "obs_habitat:geo_vm_rpls_vha":"La vacance est relativement faible sur le territoire de la CCVHA"
+    "obs_habitat:geo_vm_rpls_vha":"Les communes déléguées de Châteauneuf-sur-Sarthe et Champigné sont celles qui ont le taux de logements sociaux le plus élevé (respectivement 17.8% et 19%)."
   };
 
 
@@ -32,7 +30,7 @@ var layerComments = {
       document.querySelectorAll(".mv-nav-item").forEach(function (item) {
         item.addEventListener("click", function () {
           var layerId = item.getAttribute("data-layerid");
-          habitat_commentaire.updateComment(layerId);
+          habitat_commentaire_vha.updateComment(layerId);
         });
       });
     },

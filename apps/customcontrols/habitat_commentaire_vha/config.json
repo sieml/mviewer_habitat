@@ -1,6 +1,6 @@
 {
   "js": ["main.js"],
-  "css": "style.css",
+  "css": "style_habitat_commentaire.css",
   "html": "habitat_commentaire_vha.html",
   "target": "map",
   "options": {
