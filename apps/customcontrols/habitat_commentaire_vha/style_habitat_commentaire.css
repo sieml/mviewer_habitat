@@ -74,3 +74,40 @@
 #toggle-box:not(:checked) ~ .info-box {
   display: none;
 }
+
+#habitat_commentaire {
+    padding: 16px 18px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    border-left: 4px solid #005EA8;
+}
+
+.commentaire-header {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 10px;
+    color: #005EA8;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.commentaire-header i {
+    font-size: 20px;
+}
+
+#commentaire {
+    margin: 0;
+    color: #444;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+#habitat_commentaire .close-btn {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    color: #777;
+    cursor: pointer;
+}
