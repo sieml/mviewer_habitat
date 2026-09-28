@@ -13,8 +13,6 @@ var layerComments = {
     "obs_habitat:geo_vm_rpls_vha":"Les communes déléguées de Châteauneuf-sur-Sarthe et Champigné sont celles qui ont le taux de logements sociaux le plus élevé (respectivement 17.8% et 19%).",
     "obs_habitat:geo_vm_rpls_vha":"Le parc social est composé en majorité de grands logements (T4 et plus), représentant 79% du parc, en inadéquation avec les évolutions socio-démographique constatées.",
     "obs_habitat:geo_vm_rpls_vha":"La vacance est relativement faible sur le territoire de la CCVHA"
-    
-
   };
 
 
