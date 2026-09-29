@@ -151,3 +151,25 @@
 .toggle-analyse:checked ~ .lire-analyse i {
     transform: rotate(180deg);
 }
+
+.chiffre-cle {
+    text-align: center;
+    margin: 10px 0 15px 0;
+    padding: 10px 0;
+}
+
+.chiffre-cle strong {
+    display: block;
+    font-size: 42px;
+    line-height: 1;
+    font-weight: 700;
+    color: #005ea8;
+}
+
+.chiffre-cle span {
+    display: block;
+    margin-top: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #555;
+}
