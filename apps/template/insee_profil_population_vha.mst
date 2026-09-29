@@ -173,7 +173,7 @@
 	
 	var nom_officiel=[];
 	{{#features}}
-		nom_officiel.push('{{{nom_officiel}}}');
+		nom_officiel.push("{{{nom_officiel}}}");
 	{{/features}}
 	var nom_officiel_comp=[];
 	{{#features}}
